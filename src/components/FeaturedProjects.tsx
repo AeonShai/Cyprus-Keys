@@ -41,10 +41,10 @@ export default function FeaturedProjects() {
     <section className="w-full max-w-[1275px] mx-auto px-6 py-14">
 
       {/* Header */}
-      <div className="flex items-end justify-between mb-10">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">
         <div>
           <p className="text-xs font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-2">New Developments</p>
-          <h2 className="text-4xl font-black text-[var(--clr-text)]">Featured Projects</h2>
+          <h2 className="text-2xl md:text-4xl font-black text-[var(--clr-text)]">Featured Projects</h2>
         </div>
         <a
           href="/projects"
@@ -76,20 +76,16 @@ export default function FeaturedProjects() {
           </span>
           {/* Info */}
           <div className="absolute bottom-0 inset-x-0 p-6">
-            <div className="flex items-end justify-between">
-              <div>
-                <h3 className="text-xl font-bold text-white">{PROJECTS[0].name}</h3>
-                <p className="text-white/70 text-sm mt-1">{PROJECTS[0].location}</p>
-                <div className="flex gap-3 mt-2 text-xs text-white/60">
-                  <span>{PROJECTS[0].units}</span>
-                  <span>·</span>
-                  <span>{PROJECTS[0].status}</span>
-                  <span>·</span>
-                  <span>Completion {PROJECTS[0].completion}</span>
-                </div>
-              </div>
-              <p className="text-white font-bold text-sm whitespace-nowrap ml-4">{PROJECTS[0].price}</p>
+            <h3 className="text-xl font-bold text-white">{PROJECTS[0].name}</h3>
+            <p className="text-white/70 text-sm mt-1">{PROJECTS[0].location}</p>
+            <div className="flex flex-wrap gap-x-2 gap-y-1 mt-2 text-xs text-white/60">
+              <span>{PROJECTS[0].units}</span>
+              <span>·</span>
+              <span>{PROJECTS[0].status}</span>
+              <span>·</span>
+              <span>{PROJECTS[0].completion}</span>
             </div>
+            <p className="text-white font-bold text-sm mt-2">{PROJECTS[0].price}</p>
           </div>
         </div>
 
@@ -109,20 +105,16 @@ export default function FeaturedProjects() {
                   {p.tag}
                 </span>
                 <div className="absolute bottom-0 inset-x-0 p-5">
-                  <div className="flex items-end justify-between">
-                    <div>
-                      <h3 className="text-base font-bold text-white">{p.name}</h3>
-                      <p className="text-white/70 text-xs mt-0.5">{p.location}</p>
-                      <div className="flex gap-2 mt-1.5 text-xs text-white/60">
-                        <span>{p.units}</span>
-                        <span>·</span>
-                        <span>{p.status}</span>
-                        <span>·</span>
-                        <span>Completion {p.completion}</span>
-                      </div>
-                    </div>
-                    <p className="text-white font-bold text-sm whitespace-nowrap ml-4">{p.price}</p>
+                  <h3 className="text-base font-bold text-white">{p.name}</h3>
+                  <p className="text-white/70 text-xs mt-0.5">{p.location}</p>
+                  <div className="flex flex-wrap gap-x-2 gap-y-1 mt-1.5 text-xs text-white/60">
+                    <span>{p.units}</span>
+                    <span>·</span>
+                    <span>{p.status}</span>
+                    <span>·</span>
+                    <span>{p.completion}</span>
                   </div>
+                  <p className="text-white font-bold text-sm mt-1.5">{p.price}</p>
                 </div>
               </div>
             </div>
