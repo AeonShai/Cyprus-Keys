@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const FALLBACK_PHOTOS = [
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1275&q=80",
-  "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1275&q=80",
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1275&q=80",
-  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1275&q=80",
+  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=95",
+  "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&q=95",
+  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=95",
+  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1920&q=95",
 ];
 
 interface HeroProperty {
@@ -47,6 +47,9 @@ export default function Hero({ properties = [] }: HeroProps) {
     setPhotoIdx((i) => (i === slides.length - 1 ? 0 : i + 1));
   }
 
+  const isFallback = properties.length === 0;
+  const href = isFallback ? "/properties" : `/properties/${current.id}`;
+
   return (
     <div className="relative w-full aspect-[1275/626] rounded-[11px] overflow-hidden">
       {slides.map((slide, i) => (
@@ -55,23 +58,27 @@ export default function Hero({ properties = [] }: HeroProps) {
           src={slide.photo}
           alt={slide.title}
           fill
+          sizes="100vw"
           className={`object-cover transition-opacity duration-700 ${i === photoIdx ? "opacity-100" : "opacity-0"}`}
           priority={i === 0}
+          quality={95}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-transparent" />
+
+      {/* Clickable overlay — navigates to property */}
+      <Link href={href} className="absolute inset-0 z-0" aria-label={`View ${current.title}`} />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-transparent pointer-events-none" />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/20 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/20 to-transparent pointer-events-none"
         style={{
-          backdropFilter: "blur(1px)",
-          WebkitBackdropFilter: "blur(1px)",
           maskImage: "linear-gradient(to right, black 30%, transparent 65%)",
           WebkitMaskImage: "linear-gradient(to right, black 30%, transparent 65%)",
         }}
       />
 
       {/* Title + meta */}
-      <div className="absolute left-[7.8%] top-[12.7%]">
+      <div className="absolute left-[7.8%] top-[12.7%] pointer-events-none">
         <h1 className="font-black text-[var(--clr-text)] leading-none tracking-tight text-[clamp(24px,4.6vw,68px)]">
           {current.title.split(" ").slice(0, 2).join(" ")}<br />
           {current.title.split(" ").slice(2).join(" ") || "\u00a0"}
@@ -79,21 +86,13 @@ export default function Hero({ properties = [] }: HeroProps) {
         <p className="mt-2 text-[var(--clr-text)]/70 text-[clamp(9px,1vw,14px)]">
           {current.beds} bedrooms · {current.baths} bathrooms · {current.area} m²
         </p>
-        {properties.length > 0 && (
-          <Link
-            href={`/properties/${current.id}`}
-            className="inline-block mt-4 text-xs font-semibold text-[var(--clr-primary)] hover:underline"
-          >
-            View property →
-          </Link>
-        )}
       </div>
 
       {/* Navigation arrows */}
-      <div className="absolute left-[7.8%] bottom-[22%]">
+      <div className="absolute left-[7.8%] bottom-[22%] z-10">
         <div className="flex gap-2">
           <button
-            onClick={prevPhoto}
+            onClick={(e) => { e.preventDefault(); prevPhoto(); }}
             className="w-9 h-9 rounded-full border border-black/50 text-[var(--clr-text)] flex items-center justify-center hover:border-black transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -101,7 +100,7 @@ export default function Hero({ properties = [] }: HeroProps) {
             </svg>
           </button>
           <button
-            onClick={nextPhoto}
+            onClick={(e) => { e.preventDefault(); nextPhoto(); }}
             className="w-9 h-9 rounded-full border border-black/50 text-[var(--clr-text)] flex items-center justify-center hover:border-black transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -112,11 +111,11 @@ export default function Hero({ properties = [] }: HeroProps) {
       </div>
 
       {/* Thumbnails */}
-      <div className="absolute right-[3.1%] top-[6%] flex flex-col gap-2">
+      <div className="absolute right-[3.1%] top-[6%] flex flex-col gap-2 z-10">
         {slides.slice(0, 4).map((slide, i) => (
           <button
             key={slide.id}
-            onClick={() => setPhotoIdx(i)}
+            onClick={(e) => { e.preventDefault(); setPhotoIdx(i); }}
             className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
               i === photoIdx ? "border-white" : "border-white/30"
             }`}

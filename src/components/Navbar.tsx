@@ -103,7 +103,7 @@ export default function Navbar() {
         {/* Right actions */}
         <div className="flex items-center gap-2">
           <Link
-            href="/book"
+            href="/contacts"
             className="px-4 py-1.5 rounded-full border border-[var(--clr-primary)] text-[13px] font-medium text-[var(--clr-primary)] hover:bg-[var(--clr-primary)] hover:text-white transition-colors"
           >
             Book a call
