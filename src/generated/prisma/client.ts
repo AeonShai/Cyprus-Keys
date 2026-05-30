@@ -56,3 +56,8 @@ export type ContactMessage = Prisma.ContactMessageModel
  * 
  */
 export type AdminUser = Prisma.AdminUserModel
+/**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel

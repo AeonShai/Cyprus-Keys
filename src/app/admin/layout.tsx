@@ -12,6 +12,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         </div>
         <nav className="flex-1 py-4 flex flex-col gap-1 px-3">
           <NavLink href="/admin/properties">Properties</NavLink>
+          <NavLink href="/admin/projects">Projects</NavLink>
           <NavLink href="/admin/messages">Messages</NavLink>
         </nav>
         <div className="px-3 py-4 border-t border-white/10">

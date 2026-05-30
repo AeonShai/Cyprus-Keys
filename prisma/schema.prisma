@@ -49,6 +49,22 @@ model AdminUser {
   createdAt    DateTime @default(now())
 }
 
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  location    String
+  description String
+  coverPhoto  String
+  gallery     String[] @default([])
+  status      String   @default("ongoing") // ongoing | completed | upcoming
+  totalUnits  Int?
+  deliveryDate String?
+  highlights  Json     @default("[]") // [{ text: string }]
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 enum PropertyType {
   villa
   apartment
