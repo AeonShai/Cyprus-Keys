@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Cyprus Keys — Design Tokens
+   All color themes are defined here. ThemeSwitcher sets [data-theme] on <html>.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Theme 1: Navy + Sand (default) ── */
+  --clr-primary:          #0A2540;
+  --clr-primary-hover:    #0d3060;
+  --clr-accent:           #D1A77E;
+  --clr-bg:               #FFFFFF;
+  --clr-surface:          #F9FAFB;
+  --clr-surface-warm:     #F5F0EB;
+  --clr-text:             #1A1A1A;
+  --clr-text-secondary:   #4B5563;
+  --clr-border:           #E5E7EB;
+
+  --background: var(--clr-bg);
+  --foreground: var(--clr-text);
+}
+
+/* ── Theme 2: Obsidian + Amber ── */
+[data-theme="obsidian"] {
+  --clr-primary:          #1C1917;
+  --clr-primary-hover:    #292524;
+  --clr-accent:           #F59E0B;
+  --clr-bg:               #FAFAF9;
+  --clr-surface:          #F5F3F0;
+  --clr-surface-warm:     #EDE8DF;
+  --clr-text:             #1C1917;
+  --clr-text-secondary:   #57534E;
+  --clr-border:           #E7E5E4;
+}
+
+/* ── Theme 3: Forest + Gold ── */
+[data-theme="forest"] {
+  --clr-primary:          #14532D;
+  --clr-primary-hover:    #166534;
+  --clr-accent:           #CA8A04;
+  --clr-bg:               #F8FFF9;
+  --clr-surface:          #F0FDF4;
+  --clr-surface-warm:     #DCFCE7;
+  --clr-text:             #14532D;
+  --clr-text-secondary:   #4B5563;
+  --clr-border:           #BBF7D0;
+}
+
+/* ── Theme 4: Midnight + Lavender ── */
+[data-theme="midnight"] {
+  --clr-primary:          #1E1B4B;
+  --clr-primary-hover:    #312E81;
+  --clr-accent:           #A78BFA;
+  --clr-bg:               #F8F7FF;
+  --clr-surface:          #F5F3FF;
+  --clr-surface-warm:     #EDE9FE;
+  --clr-text:             #1E1B4B;
+  --clr-text-secondary:   #4B5563;
+  --clr-border:           #DDD6FE;
+}
+
+/* ── Theme 5: Bordeaux + Rose ── */
+[data-theme="bordeaux"] {
+  --clr-primary:          #450A0A;
+  --clr-primary-hover:    #7F1D1D;
+  --clr-accent:           #E11D48;
+  --clr-bg:               #FFF8F8;
+  --clr-surface:          #FFF1F2;
+  --clr-surface-warm:     #FFE4E6;
+  --clr-text:             #450A0A;
+  --clr-text-secondary:   #6B7280;
+  --clr-border:           #FECDD3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide native number input spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

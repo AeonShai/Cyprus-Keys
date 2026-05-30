@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Property {
+  id          Int            @id @default(autoincrement())
+  title       String
+  location    String
+  city        String
+  type        PropertyType
+  status      PropertyStatus
+  priceAmount Int
+  currency    String         @default("GBP")
+  beds        Int
+  baths       Int
+  area        Int
+  photo       String
+  gallery     String[]       @default([])
+  description String
+  features    Json           @default("[]")
+  yearBuilt   Int
+  floor       Int?
+  totalFloors Int?
+  isPublished Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+enum PropertyType {
+  villa
+  apartment
+  penthouse
+  bungalow
+  commercial
+}
+
+enum PropertyStatus {
+  sale
+  rent
+}
