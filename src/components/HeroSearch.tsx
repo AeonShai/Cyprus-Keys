@@ -90,8 +90,7 @@ export default function HeroSearch() {
             ].join(" ")}
           >
             <Icon />
-            <span className="hidden xs:inline">{label}</span>
-            <span className="xs:hidden text-xs">{label}</span>
+            {label}
           </button>
         ))}
       </div>
@@ -144,7 +143,7 @@ export default function HeroSearch() {
           <div className="border border-[var(--clr-border)] rounded-[8px] px-3 py-2.5 flex flex-col justify-center min-w-0">
             <p className="text-[9px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Min. Price</p>
             <div className="flex items-center gap-1">
-              <span className="font-bold text-[var(--clr-primary)] text-xs md:text-sm">ú</span>
+              <span className="font-bold text-[var(--clr-primary)] text-xs md:text-sm">£</span>
               <input
                 type="number"
                 value={minPrice}
@@ -160,7 +159,7 @@ export default function HeroSearch() {
           <div className="border border-[var(--clr-border)] rounded-[8px] px-3 py-2.5 flex flex-col justify-center min-w-0">
             <p className="text-[9px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Max. Price</p>
             <div className="flex items-center gap-1">
-              <span className="font-bold text-[var(--clr-primary)] text-xs md:text-sm">ú</span>
+              <span className="font-bold text-[var(--clr-primary)] text-xs md:text-sm">£</span>
               <input
                 type="number"
                 value={maxPrice}

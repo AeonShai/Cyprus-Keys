@@ -17,8 +17,8 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-[var(--clr-surface-warm)]">
-      <div className="max-w-[1440px] mx-auto px-12 pt-12 pb-8">
-        <div className="grid grid-cols-[2fr_1.2fr_1.8fr] gap-14">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-12 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1.2fr_1.8fr] gap-8 md:gap-14">
 
           {/* Col 1: Logo + tagline + Newsletter */}
           <div className="flex flex-col justify-between gap-10">
@@ -115,7 +115,7 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <p className="text-[var(--clr-text-secondary)] text-xs mb-2">Copyright 2025 Â© Cyprus Keys</p>
+              <p className="text-[var(--clr-text-secondary)] text-xs mb-2">Copyright 2025 © Cyprus Keys</p>
               <a href="https://kreativevision.agency" target="_blank" rel="noopener noreferrer" className="sr-only">kreativevision.agency</a>
               <div className="flex gap-4">
                 <a href="/terms" className="text-[var(--clr-text)] text-xs font-bold hover:opacity-60 transition-opacity">Terms Of Service</a>
