@@ -10,24 +10,22 @@ const STATUS_LABEL: Record<string, string> = {
   upcoming: "Coming Soon",
 };
 
-const STATUS_COLOR: Record<string, string> = {
-  ongoing: "bg-amber-100 text-amber-700",
-  completed: "bg-green-100 text-green-700",
-  upcoming: "bg-blue-100 text-blue-700",
-};
-
 export default async function ProjectsPage() {
   const projects = await db.project.findMany({
     where: { isPublished: true },
     orderBy: { createdAt: "desc" },
   });
 
+  const [featured, ...rest] = projects;
+
   return (
     <main className="min-h-screen">
       <div className="max-w-[1275px] mx-auto px-6 py-16">
+
+        {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-semibold tracking-widest text-[var(--clr-primary)] uppercase mb-3">
-            Developments
+          <p className="text-xs font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-2">
+            New Developments
           </p>
           <h1 className="text-[clamp(28px,4vw,52px)] font-black text-[var(--clr-text)] leading-tight tracking-tight">
             Our Projects
@@ -43,58 +41,112 @@ export default async function ProjectsPage() {
             <p className="text-[var(--clr-text-secondary)] text-sm mt-2">Check back soon.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <Link
-                key={project.id}
-                href={`/projects/${project.id}`}
-                className="group block rounded-2xl overflow-hidden border border-[var(--clr-border)] bg-[var(--clr-surface)] hover:shadow-lg transition-shadow"
-              >
-                {/* Cover image */}
-                <div className="relative w-full aspect-[16/10] overflow-hidden">
+          <>
+            {/* Row 1: large left + two stacked right */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+              {/* Large featured card */}
+              {featured && (
+                <Link href={`/projects/${featured.id}`} className="group relative rounded-2xl overflow-hidden aspect-[4/3] block">
                   <Image
-                    src={project.coverPhoto}
-                    alt={project.title}
+                    src={featured.coverPhoto}
+                    alt={featured.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3">
-                    <span className={`text-xs font-semibold px-3 py-1 rounded-full ${STATUS_COLOR[project.status] ?? "bg-gray-100 text-gray-600"}`}>
-                      {STATUS_LABEL[project.status] ?? project.status}
-                    </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <span className="absolute top-4 left-4 text-xs font-semibold text-white bg-[var(--clr-accent)] px-3 py-1 rounded-full">
+                    {STATUS_LABEL[featured.status] ?? featured.status}
+                  </span>
+                  <div className="absolute bottom-0 inset-x-0 p-6">
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <h2 className="text-xl font-bold text-white">{featured.title}</h2>
+                        <p className="text-white/70 text-sm mt-1">{featured.location}</p>
+                        <div className="flex gap-3 mt-2 text-xs text-white/60">
+                          {featured.totalUnits && <span>{featured.totalUnits} Units</span>}
+                          {featured.totalUnits && featured.deliveryDate && <span>·</span>}
+                          {featured.deliveryDate && <span>Completion {featured.deliveryDate}</span>}
+                        </div>
+                      </div>
+                      <span className="text-white/80 font-semibold text-sm whitespace-nowrap ml-4">View →</span>
+                    </div>
                   </div>
-                </div>
+                </Link>
+              )}
 
-                {/* Info */}
-                <div className="p-5">
-                  <h2 className="font-black text-[var(--clr-text)] text-lg leading-snug mb-1 group-hover:text-[var(--clr-primary)] transition-colors">
-                    {project.title}
-                  </h2>
-                  <p className="text-[var(--clr-text-secondary)] text-sm mb-3">{project.location}</p>
-                  <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex items-center gap-4 mt-4 pt-4 border-t border-[var(--clr-border)]">
-                    {project.totalUnits && (
-                      <div className="text-center">
-                        <p className="font-black text-[var(--clr-text)] text-sm">{project.totalUnits}</p>
-                        <p className="text-[var(--clr-text-secondary)] text-xs">Units</p>
+              {/* Two stacked cards */}
+              {rest.length > 0 && (
+                <div className="flex flex-col gap-5">
+                  {rest.slice(0, 2).map((p) => (
+                    <Link key={p.id} href={`/projects/${p.id}`} className="group relative rounded-2xl overflow-hidden flex-1 block">
+                      <div className="relative w-full aspect-[16/7]">
+                        <Image
+                          src={p.coverPhoto}
+                          alt={p.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <span className="absolute top-4 left-4 text-xs font-semibold text-white bg-[var(--clr-accent)] px-3 py-1 rounded-full">
+                          {STATUS_LABEL[p.status] ?? p.status}
+                        </span>
+                        <div className="absolute bottom-0 inset-x-0 p-5">
+                          <div className="flex items-end justify-between">
+                            <div>
+                              <h3 className="text-base font-bold text-white">{p.title}</h3>
+                              <p className="text-white/70 text-xs mt-0.5">{p.location}</p>
+                              <div className="flex gap-2 mt-1.5 text-xs text-white/60">
+                                {p.totalUnits && <span>{p.totalUnits} Units</span>}
+                                {p.totalUnits && p.deliveryDate && <span>·</span>}
+                                {p.deliveryDate && <span>Completion {p.deliveryDate}</span>}
+                              </div>
+                            </div>
+                            <span className="text-white/80 font-semibold text-sm whitespace-nowrap ml-4">View →</span>
+                          </div>
+                        </div>
                       </div>
-                    )}
-                    {project.deliveryDate && (
-                      <div className="text-center">
-                        <p className="font-black text-[var(--clr-text)] text-sm">{project.deliveryDate}</p>
-                        <p className="text-[var(--clr-text-secondary)] text-xs">Delivery</p>
-                      </div>
-                    )}
-                    <span className="ml-auto text-xs font-semibold text-[var(--clr-primary)]">
-                      View project →
-                    </span>
-                  </div>
+                    </Link>
+                  ))}
                 </div>
-              </Link>
-            ))}
-          </div>
+              )}
+            </div>
+
+            {/* Remaining projects: 3-column grid */}
+            {rest.length > 2 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                {rest.slice(2).map((p) => (
+                  <Link key={p.id} href={`/projects/${p.id}`} className="group relative rounded-2xl overflow-hidden block">
+                    <div className="relative w-full aspect-[4/3]">
+                      <Image
+                        src={p.coverPhoto}
+                        alt={p.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <span className="absolute top-4 left-4 text-xs font-semibold text-white bg-[var(--clr-accent)] px-3 py-1 rounded-full">
+                        {STATUS_LABEL[p.status] ?? p.status}
+                      </span>
+                      <div className="absolute bottom-0 inset-x-0 p-5">
+                        <div className="flex items-end justify-between">
+                          <div>
+                            <h3 className="text-base font-bold text-white">{p.title}</h3>
+                            <p className="text-white/70 text-xs mt-0.5">{p.location}</p>
+                            <div className="flex gap-2 mt-1.5 text-xs text-white/60">
+                              {p.totalUnits && <span>{p.totalUnits} Units</span>}
+                              {p.totalUnits && p.deliveryDate && <span>·</span>}
+                              {p.deliveryDate && <span>Completion {p.deliveryDate}</span>}
+                            </div>
+                          </div>
+                          <span className="text-white/80 font-semibold text-sm whitespace-nowrap ml-4">View →</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </main>
