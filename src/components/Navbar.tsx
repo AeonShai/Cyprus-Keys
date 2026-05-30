@@ -61,17 +61,14 @@ export default function Navbar() {
     <header className="w-full bg-[var(--clr-bg)]">
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+        <Link href="/" className="flex items-center shrink-0">
           <Image
             src={IMAGES.logo}
             alt="Cyprus Keys logo"
-            width={30}
-            height={30}
+            width={44}
+            height={44}
             priority
           />
-          <span className="font-semibold text-[var(--clr-primary)] text-[15px] tracking-tight">
-            Cyprus Keys
-          </span>
         </Link>
 
         {/* Center nav links */}
