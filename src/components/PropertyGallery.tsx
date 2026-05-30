@@ -11,6 +11,14 @@ interface PropertyGalleryProps {
 export default function PropertyGallery({ images, title }: PropertyGalleryProps) {
   const [activeIdx, setActiveIdx] = useState(0);
 
+  if (!images || images.length === 0) {
+    return (
+      <div className="w-full aspect-[16/9] rounded-2xl bg-[var(--clr-border)] flex items-center justify-center">
+        <span className="text-[var(--clr-text-secondary)] text-sm">No photos available</span>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-3">
       {/* Main image */}

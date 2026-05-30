@@ -31,7 +31,10 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Left: Gallery + Description + Features */}
           <div className="flex-1 min-w-0">
-            <PropertyGallery images={property.gallery} title={property.title} />
+            <PropertyGallery
+              images={property.gallery.length > 0 ? property.gallery : [property.photo]}
+              title={property.title}
+            />
 
             <div className="mt-8">
               <div className="flex items-start justify-between gap-4 mb-2">

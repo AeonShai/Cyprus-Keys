@@ -19,6 +19,7 @@ interface PropertyFormData {
   photo: string;
   gallery: string[];
   description: string;
+  features: { label: string; value: string }[];
   yearBuilt: number;
   floor: number | null;
   totalFloors: number | null;
@@ -44,6 +45,7 @@ const defaultData: PropertyFormData = {
   photo: "",
   gallery: [],
   description: "",
+  features: [],
   yearBuilt: new Date().getFullYear(),
   floor: null,
   totalFloors: null,
@@ -292,6 +294,50 @@ export default function PropertyForm({ initialData, mode }: PropertyFormProps) {
           className={`${inputClass} resize-none`}
         />
       </Field>
+
+      {/* Features */}
+      <div>
+        <p className="text-sm font-semibold text-[var(--clr-text)] mb-2">Property Details (features table)</p>
+        <div className="flex flex-col gap-2 mb-2">
+          {data.features.map((f, i) => (
+            <div key={i} className="flex gap-2 items-center">
+              <input
+                value={f.label}
+                onChange={(e) => {
+                  const updated = [...data.features];
+                  updated[i] = { ...updated[i], label: e.target.value };
+                  update("features", updated);
+                }}
+                placeholder="Label (e.g. Parking)"
+                className={`${inputClass} flex-1`}
+              />
+              <input
+                value={f.value}
+                onChange={(e) => {
+                  const updated = [...data.features];
+                  updated[i] = { ...updated[i], value: e.target.value };
+                  update("features", updated);
+                }}
+                placeholder="Value (e.g. Yes)"
+                className={`${inputClass} flex-1`}
+              />
+              <button
+                type="button"
+                onClick={() => update("features", data.features.filter((_, idx) => idx !== i))}
+                className="text-red-500 hover:text-red-600 text-lg font-bold px-1"
+                aria-label="Remove"
+              >×</button>
+            </div>
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => update("features", [...data.features, { label: "", value: "" }])}
+          className="text-sm text-[var(--clr-primary)] hover:underline"
+        >
+          + Add row
+        </button>
+      </div>
 
       {/* Cover photo */}
       <Field label="Cover Photo">
