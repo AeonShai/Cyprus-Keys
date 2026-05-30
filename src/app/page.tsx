@@ -4,15 +4,25 @@ import ExploreSection from "@/components/ExploreSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import ServicesSection from "@/components/ServicesSection";
 import LeadCTA from "@/components/LeadCTA";
+import db from "@/lib/db";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const properties = await db.property.findMany({
+    where: { isPublished: true },
+    orderBy: { createdAt: "desc" },
+    take: 5,
+    select: { id: true, title: true, photo: true, beds: true, baths: true, area: true },
+  });
+
   return (
     <main>
 
       {/* Section 1: Hero image + search panel (z-10, transparent bg) */}
       <section className="w-full relative z-10">
         <div className="max-w-[1275px] mx-auto px-6 pt-6 pb-12">
-          <Hero />
+          <Hero properties={properties} />
           {/* Search panel overlapping image bottom */}
           <div className="mx-[4.72%] -mt-[7%] relative z-20">
             <HeroSearch />
