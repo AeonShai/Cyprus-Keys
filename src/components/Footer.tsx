@@ -17,8 +17,8 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-[var(--clr-surface-warm)]">
-      <div className="max-w-[1275px] mx-auto px-6 pt-12 pb-8">
-        <div className="grid grid-cols-3 gap-10">
+      <div className="max-w-[1440px] mx-auto px-12 pt-12 pb-8">
+        <div className="grid grid-cols-[2fr_1.2fr_1.8fr] gap-14">
 
           {/* Col 1: Logo + tagline + Newsletter */}
           <div className="flex flex-col justify-between gap-10">
@@ -30,7 +30,7 @@ export default function Footer() {
                   <span className="text-[10px] font-semibold tracking-[0.6em] text-[var(--clr-text)]/40 uppercase">Real  Estate</span>
                 </div>
               </div>
-              <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed whitespace-nowrap">
+              <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed">
                 Your trusted partner in North Cyprus real estate.
               </p>
             </div>
