@@ -51,7 +51,7 @@ export default function Hero({ properties = [] }: HeroProps) {
   const href = isFallback ? "/properties" : `/properties/${current.id}`;
 
   return (
-    <div className="relative w-full aspect-[1275/626] rounded-[11px] overflow-hidden">
+    <div className="relative w-full aspect-[4/3] md:aspect-[1275/626] rounded-[11px] overflow-hidden">
       {slides.map((slide, i) => (
         <Image
           key={slide.id}
@@ -111,7 +111,7 @@ export default function Hero({ properties = [] }: HeroProps) {
       </div>
 
       {/* Thumbnails */}
-      <div className="absolute right-[3.1%] top-[6%] flex flex-col gap-2 z-10">
+      <div className="hidden md:flex absolute right-[3.1%] top-[6%] flex-col gap-2 z-10">
         {slides.slice(0, 4).map((slide, i) => (
           <button
             key={slide.id}

@@ -23,8 +23,8 @@ export default async function Home() {
       <section className="w-full relative z-10">
         <div className="max-w-[1275px] mx-auto px-6 pt-6 pb-12">
           <Hero properties={properties} />
-          {/* Search panel overlapping image bottom */}
-          <div className="mx-[4.72%] -mt-[7%] relative z-20">
+          {/* Search panel: overlaps hero bottom on desktop, sits below on mobile */}
+          <div className="mx-0 md:mx-[4.72%] mt-3 md:-mt-[7%] relative z-20">
             <HeroSearch />
           </div>
         </div>
