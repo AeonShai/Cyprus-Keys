@@ -79,7 +79,7 @@ export default function HeroSearch() {
             key={id}
             onClick={() => setActiveTab(id)}
             className={[
-              "flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium transition-colors whitespace-nowrap",
+              "w-28 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium transition-colors whitespace-nowrap",
               idx === 0 ? "rounded-tl-[11px]" : "",
               idx === TABS.length - 1 ? "rounded-tr-[11px]" : "",
               activeTab === id
@@ -96,17 +96,17 @@ export default function HeroSearch() {
       {/* Search panel */}
       <div className="relative bg-[var(--clr-bg)] shadow-md rounded-[0_11px_11px_11px] px-4 py-4 pb-10 md:pb-6">
 
-        {/* Mobile: 2x2 grid. Desktop: single row flex */}
-        <div className="grid grid-cols-2 gap-3 md:flex md:items-stretch md:gap-3">
+        {/* Mobile: stacked. Desktop: single row flex */}
+        <div className="flex flex-col gap-3 md:flex-row md:items-stretch md:gap-3">
 
           {/* Region */}
-          <div className="border border-[var(--clr-border)] rounded-[8px] px-3 py-2.5 flex flex-col justify-center min-w-0">
-            <p className="text-[9px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Region / City</p>
+          <div className="flex-1 border border-[var(--clr-border)] rounded-[8px] px-4 py-3 flex flex-col justify-center min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Region / City</p>
             <div className="relative flex items-center">
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value)}
-                className="w-full font-bold text-[var(--clr-primary)] text-xs md:text-sm bg-transparent outline-none cursor-pointer appearance-none pr-4"
+                className="w-full font-bold text-[var(--clr-primary)] text-sm bg-transparent outline-none cursor-pointer appearance-none pr-4"
               >
                 <option value="">All Regions</option>
                 {CYPRUS_REGIONS.map((r) => (
@@ -115,17 +115,17 @@ export default function HeroSearch() {
               </select>
               <span className="absolute right-0 text-gray-400 pointer-events-none"><ChevronIcon /></span>
             </div>
-            <p className="text-[10px] text-gray-400 mt-0.5 truncate">Cyprus</p>
+            <p className="text-[11px] text-gray-400 mt-0.5">Cyprus</p>
           </div>
 
           {/* Property type */}
-          <div className="border border-[var(--clr-border)] rounded-[8px] px-3 py-2.5 flex flex-col justify-center min-w-0">
-            <p className="text-[9px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Property Type</p>
+          <div className="flex-1 border border-[var(--clr-border)] rounded-[8px] px-4 py-3 flex flex-col justify-center min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Property Type</p>
             <div className="relative flex items-center">
               <select
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
-                className="w-full font-bold text-[var(--clr-primary)] text-xs md:text-sm bg-transparent outline-none cursor-pointer appearance-none pr-4"
+                className="w-full font-bold text-[var(--clr-primary)] text-sm bg-transparent outline-none cursor-pointer appearance-none pr-4"
               >
                 <option value="">All Types</option>
                 {PROPERTY_TYPES.map((t) => (
@@ -134,40 +134,42 @@ export default function HeroSearch() {
               </select>
               <span className="absolute right-0 text-gray-400 pointer-events-none"><ChevronIcon /></span>
             </div>
-            <p className="text-[10px] text-gray-400 mt-0.5 truncate">Apartment, Villa, Land...</p>
+            <p className="text-[11px] text-gray-400 mt-0.5">Apartment, Villa, Land...</p>
           </div>
 
-          {/* Min price */}
-          <div className="border border-[var(--clr-border)] rounded-[8px] px-3 py-2.5 flex flex-col justify-center min-w-0">
-            <p className="text-[9px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Min. Price</p>
-            <div className="flex items-center gap-1">
-              <span className="font-bold text-[var(--clr-primary)] text-xs md:text-sm">£</span>
-              <input
-                type="number"
-                value={minPrice}
-                onChange={(e) => setMinPrice(e.target.value)}
-                placeholder="0"
-                className="w-full font-bold text-[var(--clr-primary)] text-xs md:text-sm bg-transparent outline-none placeholder:text-gray-300 placeholder:font-normal"
-              />
+          {/* Price range — min + divider + max in one box */}
+          <div className="flex-[2] border border-[var(--clr-border)] rounded-[8px] px-4 py-3 flex items-center justify-around min-w-0 gap-3">
+            <div className="flex flex-col justify-center flex-1 min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Min. Price</p>
+              <div className="flex items-center gap-1">
+                <span className="font-bold text-[var(--clr-primary)] text-sm">£</span>
+                <input
+                  type="number"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                  placeholder="0"
+                  className="w-full font-bold text-[var(--clr-primary)] text-sm bg-transparent outline-none placeholder:text-gray-300 placeholder:font-normal"
+                />
+              </div>
+              <p className="text-[11px] text-gray-400 mt-0.5">Sterling (GBP)</p>
             </div>
-            <p className="text-[10px] text-gray-400 mt-0.5">Sterling (GBP)</p>
+            <div className="w-px h-8 bg-[var(--clr-border)] shrink-0" />
+            <div className="flex flex-col justify-center flex-1 min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Max. Price</p>
+              <div className="flex items-center gap-1">
+                <span className="font-bold text-[var(--clr-primary)] text-sm">£</span>
+                <input
+                  type="number"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  placeholder="No limit"
+                  className="w-full font-bold text-[var(--clr-primary)] text-sm bg-transparent outline-none placeholder:text-gray-300 placeholder:font-normal"
+                />
+              </div>
+              <p className="text-[11px] text-gray-400 mt-0.5">Sterling (GBP)</p>
+            </div>
           </div>
 
-          {/* Max price */}
-          <div className="border border-[var(--clr-border)] rounded-[8px] px-3 py-2.5 flex flex-col justify-center min-w-0">
-            <p className="text-[9px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Max. Price</p>
-            <div className="flex items-center gap-1">
-              <span className="font-bold text-[var(--clr-primary)] text-xs md:text-sm">£</span>
-              <input
-                type="number"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
-                placeholder="No limit"
-                className="w-full font-bold text-[var(--clr-primary)] text-xs md:text-sm bg-transparent outline-none placeholder:text-gray-300 placeholder:font-normal"
-              />
-            </div>
-            <p className="text-[10px] text-gray-400 mt-0.5">Sterling (GBP)</p>
-          </div>
         </div>
 
         {/* Search button */}
