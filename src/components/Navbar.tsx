@@ -65,8 +65,8 @@ export default function Navbar() {
           <Image
             src={IMAGES.logo}
             alt="Cyprus Keys logo"
-            width={64}
-            height={64}
+            width={180}
+            height={120}
             priority
           />
         </Link>

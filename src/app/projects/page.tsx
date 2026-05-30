@@ -10,11 +10,54 @@ const STATUS_LABEL: Record<string, string> = {
   upcoming: "Coming Soon",
 };
 
+const FALLBACK_PROJECTS = [
+  {
+    id: 0,
+    title: "Azure Residences",
+    location: "Girne, North Cyprus",
+    totalUnits: 48,
+    status: "upcoming",
+    deliveryDate: "Q3 2026",
+    coverPhoto: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+  },
+  {
+    id: 0,
+    title: "Kyrenia Hills",
+    location: "Alsancak, Girne",
+    totalUnits: 24,
+    status: "ongoing",
+    deliveryDate: "Q1 2027",
+    coverPhoto: "https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=1200&q=80",
+  },
+  {
+    id: 0,
+    title: "Famagusta Bay",
+    location: "Gazimağusa, Cyprus",
+    totalUnits: 112,
+    status: "upcoming",
+    deliveryDate: "Q4 2027",
+    coverPhoto: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
+  },
+];
+
+type ProjectItem = {
+  id: number;
+  title: string;
+  location: string;
+  totalUnits: number | null;
+  status: string;
+  deliveryDate: string | null;
+  coverPhoto: string;
+};
+
 export default async function ProjectsPage() {
-  const projects = await db.project.findMany({
+  const dbProjects = await db.project.findMany({
     where: { isPublished: true },
     orderBy: { createdAt: "desc" },
   });
+
+  const projects: ProjectItem[] = dbProjects.length > 0 ? dbProjects : FALLBACK_PROJECTS;
+  const isFallback = dbProjects.length === 0;
 
   const [featured, ...rest] = projects;
 
@@ -46,7 +89,7 @@ export default async function ProjectsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
               {/* Large featured card */}
               {featured && (
-                <Link href={`/projects/${featured.id}`} className="group relative rounded-2xl overflow-hidden aspect-[4/3] block">
+                <Link href={featured.id ? `/projects/${featured.id}` : "/contacts"} className="group relative rounded-2xl overflow-hidden aspect-[4/3] block">
                   <Image
                     src={featured.coverPhoto}
                     alt={featured.title}
@@ -77,8 +120,8 @@ export default async function ProjectsPage() {
               {/* Two stacked cards */}
               {rest.length > 0 && (
                 <div className="flex flex-col gap-5">
-                  {rest.slice(0, 2).map((p) => (
-                    <Link key={p.id} href={`/projects/${p.id}`} className="group relative rounded-2xl overflow-hidden flex-1 block">
+                  {rest.slice(0, 2).map((p, i) => (
+                    <Link key={p.id || i} href={p.id ? `/projects/${p.id}` : "/contacts"} className="group relative rounded-2xl overflow-hidden flex-1 block">
                       <div className="relative w-full aspect-[16/7]">
                         <Image
                           src={p.coverPhoto}
@@ -114,8 +157,8 @@ export default async function ProjectsPage() {
             {/* Remaining projects: 3-column grid */}
             {rest.length > 2 && (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-                {rest.slice(2).map((p) => (
-                  <Link key={p.id} href={`/projects/${p.id}`} className="group relative rounded-2xl overflow-hidden block">
+                {rest.slice(2).map((p, i) => (
+                  <Link key={p.id || i} href={p.id ? `/projects/${p.id}` : "/contacts"} className="group relative rounded-2xl overflow-hidden block">
                     <div className="relative w-full aspect-[4/3]">
                       <Image
                         src={p.coverPhoto}
