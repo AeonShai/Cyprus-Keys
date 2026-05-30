@@ -88,12 +88,6 @@ export default function Navbar() {
           >
             Rent
           </Link>
-          <Link
-            href="/contacts"
-            className="text-sm text-[var(--clr-text-secondary)] hover:text-[var(--clr-primary)] transition-colors"
-          >
-            Contacts
-          </Link>
           <button className="flex items-center gap-1.5 text-sm text-[var(--clr-text-secondary)] hover:text-[var(--clr-primary)] transition-colors cursor-pointer">
             <GlobeIcon />
             Language
@@ -106,7 +100,7 @@ export default function Navbar() {
             href="/contacts"
             className="px-4 py-1.5 rounded-full border border-[var(--clr-primary)] text-[13px] font-medium text-[var(--clr-primary)] hover:bg-[var(--clr-primary)] hover:text-white transition-colors"
           >
-            Book a call
+            Contacts
           </Link>
         </div>
       </nav>
