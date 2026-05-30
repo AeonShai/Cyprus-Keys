@@ -113,7 +113,7 @@ export default function ContactPage() {
           </p>
           <h1 className="text-5xl md:text-6xl font-black text-white leading-none mb-5">
             Let&apos;s Find Your<br />
-            <span className="text-[var(--clr-accent)]">Perfect Property</span>
+            <span className="text-[#D4AF37]">Perfect Property</span>
           </h1>
           <p className="text-white/55 text-base max-w-md mx-auto leading-relaxed">
             Our team in Girne is ready to guide you — from first question to keys in hand.

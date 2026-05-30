@@ -21,6 +21,7 @@ export default async function EditProjectPage({
         initialData={{
           ...project,
           totalUnits: project.totalUnits ?? null,
+          deliveryDate: project.deliveryDate ?? undefined,
           highlights: Array.isArray(project.highlights)
             ? (project.highlights as { text: string }[])
             : [],
