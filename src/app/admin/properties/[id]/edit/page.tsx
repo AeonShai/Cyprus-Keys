@@ -23,6 +23,9 @@ export default async function EditPropertyPage({
           ...property,
           floor: property.floor ?? null,
           totalFloors: property.totalFloors ?? null,
+          features: Array.isArray(property.features)
+            ? (property.features as { label: string; value: string }[])
+            : [],
         }}
       />
     </div>
