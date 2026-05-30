@@ -84,13 +84,13 @@ export default function ServicesSection() {
       <div className="max-w-[1275px] mx-auto px-6">
 
         {/* Header */}
-        <div className="flex items-start justify-between mb-12">
+        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-12">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2.5 h-2.5 rounded-full bg-[var(--clr-text)] flex-shrink-0" />
               <p className="text-xs font-semibold tracking-widest text-[var(--clr-text-secondary)]">Explore Our Advantages</p>
             </div>
-            <h2 className="text-4xl font-black text-[var(--clr-text)] leading-tight max-w-sm">
+            <h2 className="text-2xl md:text-4xl font-black text-[var(--clr-text)] leading-tight max-w-sm">
               Why Cyprus Keys<br />Stands Unrivalled?
             </h2>
           </div>

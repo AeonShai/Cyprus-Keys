@@ -20,7 +20,7 @@ export default function LeadCTA() {
           {/* Left: copy */}
           <div>
             <p className="text-xs font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-3">Free Consultation</p>
-            <h2 className="text-4xl font-black text-white leading-tight">
+            <h2 className="text-2xl md:text-4xl font-black text-white leading-tight">
               Find your ideal<br />property in Cyprus
             </h2>
             <p className="text-white/60 mt-4 text-sm leading-relaxed max-w-md">

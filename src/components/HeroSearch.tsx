@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-type Tab = "satilik" | "kiralik" | "projeler";
+type Tab = "satilik" | "kiralik";
 
 function KeyIcon() {
   return (
@@ -43,7 +43,6 @@ function ChevronIcon() {
 const TABS: { id: Tab; label: string; Icon: () => React.JSX.Element }[] = [
   { id: "satilik", label: "For Sale", Icon: KeyIcon },
   { id: "kiralik", label: "For Rent", Icon: HomeIcon },
-  { id: "projeler", label: "Projects", Icon: BuildingIcon },
 ];
 
 const CYPRUS_REGIONS = [
@@ -62,7 +61,6 @@ export default function HeroSearch() {
   const [maxPrice, setMaxPrice] = useState("");
 
   function handleSearch() {
-    if (activeTab === "projeler") { router.push("/projects"); return; }
     const params = new URLSearchParams();
     params.set("status", activeTab === "satilik" ? "sale" : "rent");
     if (region) params.set("location", region);
@@ -110,7 +108,7 @@ export default function HeroSearch() {
                 onChange={(e) => setRegion(e.target.value)}
                 className="w-full font-bold text-[var(--clr-primary)] text-xs md:text-sm bg-transparent outline-none cursor-pointer appearance-none pr-4"
               >
-                <option value="">All</option>
+                <option value="">All Regions</option>
                 {CYPRUS_REGIONS.map((r) => (
                   <option key={r} value={r}>{r}</option>
                 ))}
@@ -129,14 +127,14 @@ export default function HeroSearch() {
                 onChange={(e) => setPropertyType(e.target.value)}
                 className="w-full font-bold text-[var(--clr-primary)] text-xs md:text-sm bg-transparent outline-none cursor-pointer appearance-none pr-4"
               >
-                <option value="">All</option>
+                <option value="">All Types</option>
                 {PROPERTY_TYPES.map((t) => (
                   <option key={t} value={t}>{t}</option>
                 ))}
               </select>
               <span className="absolute right-0 text-gray-400 pointer-events-none"><ChevronIcon /></span>
             </div>
-            <p className="text-[10px] text-gray-400 mt-0.5 truncate">Apt, Villa...</p>
+            <p className="text-[10px] text-gray-400 mt-0.5 truncate">Apartment, Villa, Land...</p>
           </div>
 
           {/* Min price */}
@@ -152,7 +150,7 @@ export default function HeroSearch() {
                 className="w-full font-bold text-[var(--clr-primary)] text-xs md:text-sm bg-transparent outline-none placeholder:text-gray-300 placeholder:font-normal"
               />
             </div>
-            <p className="text-[10px] text-gray-400 mt-0.5">GBP</p>
+            <p className="text-[10px] text-gray-400 mt-0.5">Sterling (GBP)</p>
           </div>
 
           {/* Max price */}
@@ -164,11 +162,11 @@ export default function HeroSearch() {
                 type="number"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                placeholder="Any"
+                placeholder="No limit"
                 className="w-full font-bold text-[var(--clr-primary)] text-xs md:text-sm bg-transparent outline-none placeholder:text-gray-300 placeholder:font-normal"
               />
             </div>
-            <p className="text-[10px] text-gray-400 mt-0.5">GBP</p>
+            <p className="text-[10px] text-gray-400 mt-0.5">Sterling (GBP)</p>
           </div>
         </div>
 
