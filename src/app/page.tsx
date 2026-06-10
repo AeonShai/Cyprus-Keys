@@ -27,7 +27,7 @@ export default async function Home() {
     <main>
 
       {/* Hero: pulls up behind fixed navbar */}
-      <div className="-mt-24">
+      <div className="-mt-16">
         <Hero properties={heroProperties} />
       </div>
 

@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <div className="h-24 shrink-0" />
+        <div className="h-16 shrink-0" />
         {children}
         <Footer />
         <ThemeSwitcher />
