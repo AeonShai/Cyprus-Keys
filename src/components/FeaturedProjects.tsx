@@ -41,7 +41,7 @@ export default function FeaturedProjects() {
           </p>
           <a
             href="/projects"
-            className="inline-flex items-center gap-2 bg-[var(--clr-text)] hover:bg-[var(--clr-text-secondary)] text-white font-semibold text-sm px-6 py-3 rounded-full transition-colors"
+            className="inline-flex items-center gap-2 bg-black hover:bg-black/80 text-white font-semibold text-sm px-6 py-3 rounded-full transition-colors"
           >
             {t("featured_all")}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

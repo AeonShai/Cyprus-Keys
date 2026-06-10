@@ -77,6 +77,7 @@ export default function Navbar() {
           <Link href="/properties?status=sale" className={`text-sm transition-colors ${isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"}`}>{t("nav_buy")}</Link>
           <Link href="/properties?status=rent" className={`text-sm transition-colors ${isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"}`}>{t("nav_rent")}</Link>
           <Link href="/projects" className={`text-sm transition-colors ${isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"}`}>{t("nav_projects")}</Link>
+          <Link href="/purchase-guide" className={`text-sm transition-colors ${isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"}`}>{t("nav_purchase_guide")}</Link>
 
           {/* Language picker */}
           <div ref={langRef} className="relative">
@@ -159,6 +160,7 @@ export default function Navbar() {
               { href: "/properties?status=sale", label: t("nav_buy") },
               { href: "/properties?status=rent", label: t("nav_rent") },
               { href: "/projects", label: t("nav_projects") },
+              { href: "/purchase-guide", label: t("nav_purchase_guide") },
               { href: "/contacts", label: t("nav_contacts") },
             ].map((item) => (
               <Link

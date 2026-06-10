@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLang } from "@/hooks/useLang";
 
 const FALLBACK_SLIDES = [
   { title: "Luxury Villa in Girne", photo: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2560&q=100" },
@@ -26,6 +27,7 @@ interface HeroProps {
 
 export default function Hero({ properties = [] }: HeroProps) {
   const [activeIdx, setActiveIdx] = useState(0);
+  const { t } = useLang();
 
   const slides = properties.length > 0
     ? properties.map((p) => ({ title: p.title, photo: p.photo }))
@@ -70,7 +72,7 @@ export default function Hero({ properties = [] }: HeroProps) {
               {slides[activeIdx].title}
             </h1>
             <p className="text-white/70 text-base leading-relaxed max-w-lg hero-subtitle">
-              Explore the finest villas, apartments and commercial properties in North Cyprus.
+              {t("hero_subtitle")}
             </p>
           </div>
         </div>
@@ -83,7 +85,7 @@ export default function Hero({ properties = [] }: HeroProps) {
             href="/properties"
             className="inline-flex items-center gap-2.5 bg-white/15 backdrop-blur-sm border border-white/40 text-white font-semibold text-sm px-6 py-3 rounded-full hover:bg-white/25 transition-colors"
           >
-            Explore property
+            {t("hero_cta_btn")}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

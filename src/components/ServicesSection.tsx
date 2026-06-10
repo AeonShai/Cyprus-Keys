@@ -2,11 +2,12 @@
 
 import { useLang } from "@/hooks/useLang";
 import Anim from "@/components/Anim";
+import type { TranslationKey } from "@/lib/translations";
 
-const SERVICES = [
+const SERVICE_KEYS: { titleKey: TranslationKey; descKey: TranslationKey; icon: React.ReactNode }[] = [
   {
-    title: "Legal Consultancy",
-    description: "Full title deed verification, contract review and notarised purchase process managed by certified Cyprus property lawyers.",
+    titleKey: "service_legal_title",
+    descKey: "service_legal_desc",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -17,8 +18,8 @@ const SERVICES = [
     ),
   },
   {
-    title: "Residence Permit",
-    description: "End-to-end management of your North Cyprus residency application — from documentation to final approval.",
+    titleKey: "service_permit_title",
+    descKey: "service_permit_desc",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="5" width="20" height="14" rx="2" />
@@ -28,8 +29,8 @@ const SERVICES = [
     ),
   },
   {
-    title: "ROI Analysis",
-    description: "Data-driven rental yield projections and capital appreciation forecasts specific to each district and property type.",
+    titleKey: "service_roi_title",
+    descKey: "service_roi_desc",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
@@ -38,8 +39,8 @@ const SERVICES = [
     ),
   },
   {
-    title: "Resident Visa Opportunities",
-    description: "Investing in North Cyprus real estate opens a direct pathway to long-term residency for you and your family.",
+    titleKey: "service_visa_title",
+    descKey: "service_visa_desc",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
@@ -49,8 +50,8 @@ const SERVICES = [
     ),
   },
   {
-    title: "Profit Tax Exemption",
-    description: "North Cyprus offers significant tax advantages for property investors, including exemptions on rental income for qualifying buyers.",
+    titleKey: "service_tax_title",
+    descKey: "service_tax_desc",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
@@ -60,8 +61,8 @@ const SERVICES = [
     ),
   },
   {
-    title: "Mortgage & Finance",
-    description: "Access to local and international financing options, with currency risk guidance for GBP, EUR and USD buyers.",
+    titleKey: "service_mortgage_title",
+    descKey: "service_mortgage_desc",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2" />
@@ -72,8 +73,8 @@ const SERVICES = [
     ),
   },
   {
-    title: "Remote Acquisition",
-    description: "Purchase your Cyprus property from anywhere in the world. We handle all formalities with full power of attorney support.",
+    titleKey: "service_remote_title",
+    descKey: "service_remote_desc",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -94,7 +95,7 @@ export default function ServicesSection() {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2.5 h-2.5 rounded-full bg-[var(--clr-text)] flex-shrink-0" />
-              <p className="text-xs font-semibold tracking-widest text-[var(--clr-text-secondary)]">Explore Our Advantages</p>
+              <p className="text-xs font-semibold tracking-widest text-[var(--clr-text-secondary)]">{t("services_badge")}</p>
             </div>
             <h2 className="text-2xl md:text-4xl font-black text-[var(--clr-text)] leading-tight max-w-sm">
               {t("services_title")}
@@ -113,11 +114,11 @@ export default function ServicesSection() {
 
         {/* Services grid — no cards, just icon + title + description */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
-          {SERVICES.map((s, i) => (
-            <Anim key={s.title} delay={i * 80}>
+          {SERVICE_KEYS.map((s, i) => (
+            <Anim key={s.titleKey} delay={i * 80}>
               <div className="text-[var(--clr-text)] mb-3">{s.icon}</div>
-              <h3 className="font-bold text-[var(--clr-text)] text-base mb-3 leading-snug">{s.title}</h3>
-              <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed">{s.description}</p>
+              <h3 className="font-bold text-[var(--clr-text)] text-base mb-3 leading-snug">{t(s.titleKey)}</h3>
+              <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed">{t(s.descKey)}</p>
             </Anim>
           ))}
         </div>
