@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { useLang } from "@/hooks/useLang";
@@ -8,123 +8,84 @@ const PROJECTS = [
     id: 1,
     name: "Azure Residences",
     location: "Girne, North Cyprus",
-    units: "48 Units",
-    status: "Off-Plan",
-    completion: "Q3 2026",
-    price: "From £145,000",
-    photo: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
-    tag: "New Launch",
+    photo: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=90",
   },
   {
     id: 2,
     name: "Kyrenia Hills",
     location: "Alsancak, Girne",
-    units: "24 Villas",
-    status: "Under Construction",
-    completion: "Q1 2027",
-    price: "From £320,000",
-    photo: "https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=800&q=80",
-    tag: "Limited Units",
+    photo: "https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=1200&q=90",
   },
   {
     id: 3,
     name: "Famagusta Bay",
     location: "Gazimağusa, Cyprus",
-    units: "112 Apartments",
-    status: "Off-Plan",
-    completion: "Q4 2027",
-    price: "From £98,000",
-    photo: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
-    tag: "Sea View",
+    photo: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=90",
   },
 ];
 
 export default function FeaturedProjects() {
   const { t } = useLang();
   return (
-    <section className="w-full max-w-[1600px] mx-auto px-8 md:px-12 py-14">
+    <section className="w-full max-w-[1600px] mx-auto px-8 md:px-12 py-16">
+      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-      {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">
-        <div>
-          <p className="text-xs font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-2">{t("featured_badge")}</p>
-          <h2 className="text-2xl md:text-4xl font-black text-[var(--clr-text)]">{t("featured_title")}</h2>
+        {/* Left: text block */}
+        <div className="lg:w-[38%] shrink-0">
+          <h2 className="text-3xl md:text-4xl font-black text-[var(--clr-text)] leading-tight mb-5">
+            Where Expertise Meets<br />Exceptional Service
+          </h2>
+          <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed mb-8 max-w-sm">
+            We set our sights high for every person who walks through our door. From first-time homebuyers to seasoned investors, all clients are greeted by our diverse and knowledgeable team.
+          </p>
+          <a
+            href="/projects"
+            className="inline-flex items-center gap-2 bg-[var(--clr-text)] hover:bg-[var(--clr-text-secondary)] text-white font-semibold text-sm px-6 py-3 rounded-full transition-colors"
+          >
+            {t("featured_all")}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
-        <a
-          href="/projects"
-          className="flex items-center gap-2 text-sm font-semibold text-white bg-[var(--clr-primary)] hover:bg-[var(--clr-primary-hover)] transition-colors px-5 py-2 rounded-full"
-        >
-          {t("featured_all")}
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
-      </div>
 
-      {/* Asymmetric grid: large left + two stacked right */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Right: 3-image bento */}
+        <div className="flex-1 w-full flex gap-3" style={{ height: "420px" }}>
 
-        {/* Large featured card */}
-        <div className="group cursor-pointer relative rounded-2xl overflow-hidden aspect-[4/3]">
-          <Image
-            src={PROJECTS[0].photo}
-            alt={PROJECTS[0].name}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          {/* Dark gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-          {/* Tag */}
-          <span className="absolute top-4 left-4 text-xs font-semibold text-white bg-[var(--clr-accent)] px-3 py-1 rounded-full">
-            {PROJECTS[0].tag}
-          </span>
-          {/* Info */}
-          <div className="absolute bottom-0 inset-x-0 p-6">
-            <h3 className="text-xl font-bold text-white">{PROJECTS[0].name}</h3>
-            <p className="text-white/70 text-sm mt-1">{PROJECTS[0].location}</p>
-            <div className="flex flex-wrap gap-x-2 gap-y-1 mt-2 text-xs text-white/60">
-              <span>{PROJECTS[0].units}</span>
-              <span>·</span>
-              <span>{PROJECTS[0].status}</span>
-              <span>·</span>
-              <span>{PROJECTS[0].completion}</span>
-            </div>
-            <p className="text-white font-bold text-sm mt-2">{PROJECTS[0].price}</p>
+          {/* Big image left */}
+          <div className="w-[48%] relative rounded-2xl overflow-hidden">
+            <Image
+              src={PROJECTS[2].photo}
+              alt={PROJECTS[2].name}
+              fill
+              unoptimized
+              className="object-cover hover:scale-105 transition-transform duration-700"
+            />
           </div>
-        </div>
 
-        {/* Two stacked cards */}
-        <div className="flex flex-col gap-5">
-          {PROJECTS.slice(1).map((p) => (
-            <div key={p.id} className="group cursor-pointer relative rounded-2xl overflow-hidden flex-1" style={{ minHeight: 0 }}>
-              <div className="relative w-full h-full aspect-[16/7]">
-                <Image
-                  src={p.photo}
-                  alt={p.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <span className="absolute top-4 left-4 text-xs font-semibold text-white bg-[var(--clr-accent)] px-3 py-1 rounded-full">
-                  {p.tag}
-                </span>
-                <div className="absolute bottom-0 inset-x-0 p-5">
-                  <h3 className="text-base font-bold text-white">{p.name}</h3>
-                  <p className="text-white/70 text-xs mt-0.5">{p.location}</p>
-                  <div className="flex flex-wrap gap-x-2 gap-y-1 mt-1.5 text-xs text-white/60">
-                    <span>{p.units}</span>
-                    <span>·</span>
-                    <span>{p.status}</span>
-                    <span>·</span>
-                    <span>{p.completion}</span>
-                  </div>
-                  <p className="text-white font-bold text-sm mt-1.5">{p.price}</p>
-                </div>
-              </div>
+          {/* Two stacked right */}
+          <div className="flex-1 flex flex-col gap-3">
+            <div className="flex-1 relative rounded-2xl overflow-hidden">
+              <Image
+                src={PROJECTS[0].photo}
+                alt={PROJECTS[0].name}
+                fill
+                unoptimized
+                className="object-cover hover:scale-105 transition-transform duration-700"
+              />
             </div>
-          ))}
-        </div>
+            <div className="flex-1 relative rounded-2xl overflow-hidden">
+              <Image
+                src={PROJECTS[1].photo}
+                alt={PROJECTS[1].name}
+                fill
+                unoptimized
+                className="object-cover hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          </div>
 
+        </div>
       </div>
     </section>
   );
