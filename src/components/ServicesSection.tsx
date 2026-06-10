@@ -116,13 +116,13 @@ export default function ServicesSection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
           {SERVICE_KEYS.map((s, i) => (
             <div key={s.titleKey}>
-              <Anim delay={i * 40} className="text-[var(--clr-text)] mb-3">
+              <Anim delay={i * 25} className="text-[var(--clr-text)] mb-3">
                 {s.icon}
               </Anim>
-              <Anim delay={350 + i * 40}>
+              <Anim delay={150 + i * 25}>
                 <h3 className="font-bold text-[var(--clr-text)] text-base mb-3 leading-snug">{t(s.titleKey)}</h3>
               </Anim>
-              <Anim delay={650 + i * 40}>
+              <Anim delay={300 + i * 25}>
                 <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed">{t(s.descKey)}</p>
               </Anim>
             </div>
