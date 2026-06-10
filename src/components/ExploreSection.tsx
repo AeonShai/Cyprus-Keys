@@ -43,30 +43,32 @@ export default function ExploreSection({ properties }: { properties: Property[] 
         </p>
       </Anim>
 
-      {/* Bento grid — flexbox with explicit heights so Next.js fill images work */}
-      <Anim delay={150} className="flex gap-4" style={{ height: "580px" }}>
+      {/* Bento grid — each card animates individually */}
+      <div className="flex gap-4" style={{ height: "580px" }}>
 
         {/* Card 1 — tall left */}
         {p1 && (
-          <Link href={`/properties/${p1.id}`} className="group relative rounded-2xl overflow-hidden" style={{ width: "38%" }}>
-            <Image
-              src={p1.photo || "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=2560&q=100"}
-              alt={p1.title}
-              fill
-              unoptimized
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-            <div className="absolute bottom-0 inset-x-0 px-5 py-4 flex items-end justify-between">
-              <div>
-                <h3 className="font-bold text-white text-base leading-tight">{p1.title}</h3>
-                <p className="text-white/70 text-xs mt-0.5">{p1.location}</p>
+          <Anim variant="up" delay={0} style={{ width: "38%" }} className="relative rounded-2xl overflow-hidden">
+            <Link href={`/properties/${p1.id}`} className="group absolute inset-0">
+              <Image
+                src={p1.photo || "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=2560&q=100"}
+                alt={p1.title}
+                fill
+                unoptimized
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              <div className="absolute bottom-0 inset-x-0 px-5 py-4 flex items-end justify-between">
+                <div>
+                  <h3 className="font-bold text-white text-base leading-tight">{p1.title}</h3>
+                  <p className="text-white/70 text-xs mt-0.5">{p1.location}</p>
+                </div>
+                <span className="text-white font-bold text-sm bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full shrink-0 ml-2">
+                  {formatPrice(p1.priceAmount, p1.currency, p1.status)}
+                </span>
               </div>
-              <span className="text-white font-bold text-sm bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full shrink-0 ml-2">
-                {formatPrice(p1.priceAmount, p1.currency, p1.status)}
-              </span>
-            </div>
-          </Link>
+            </Link>
+          </Anim>
         )}
 
         {/* Right column */}
@@ -75,52 +77,56 @@ export default function ExploreSection({ properties }: { properties: Property[] 
           {/* Top row: Card 2 + Card 3 */}
           <div className="flex gap-4" style={{ height: "300px" }}>
             {p2 && (
-              <Link href={`/properties/${p2.id}`} className="group relative flex-1 rounded-2xl overflow-hidden">
-                <Image
-                  src={p2.photo || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2560&q=100"}
-                  alt={p2.title}
-                  fill
-                  unoptimized
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 inset-x-0 px-4 py-4">
-                  <div className="flex items-start justify-between mb-1">
-                    <h3 className="font-bold text-white text-sm leading-tight">{p2.title}</h3>
-                    <span className="text-white font-bold text-xs bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full shrink-0 ml-2">
-                      {formatPrice(p2.priceAmount, p2.currency, p2.status)}
-                    </span>
+              <Anim variant="up" delay={150} className="relative flex-1 rounded-2xl overflow-hidden">
+                <Link href={`/properties/${p2.id}`} className="group absolute inset-0">
+                  <Image
+                    src={p2.photo || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2560&q=100"}
+                    alt={p2.title}
+                    fill
+                    unoptimized
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 inset-x-0 px-4 py-4">
+                    <div className="flex items-start justify-between mb-1">
+                      <h3 className="font-bold text-white text-sm leading-tight">{p2.title}</h3>
+                      <span className="text-white font-bold text-xs bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full shrink-0 ml-2">
+                        {formatPrice(p2.priceAmount, p2.currency, p2.status)}
+                      </span>
+                    </div>
+                    <p className="text-white/70 text-xs leading-snug line-clamp-2">{p2.description}</p>
                   </div>
-                  <p className="text-white/70 text-xs leading-snug line-clamp-2">{p2.description}</p>
-                </div>
-              </Link>
+                </Link>
+              </Anim>
             )}
             {p3 && (
-              <Link href={`/properties/${p3.id}`} className="group relative flex-1 rounded-2xl overflow-hidden">
-                <Image
-                  src={p3.photo || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=2560&q=100"}
-                  alt={p3.title}
-                  fill
-                  unoptimized
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 inset-x-0 px-4 py-4">
-                  <div className="flex items-start justify-between mb-1">
-                    <h3 className="font-bold text-white text-sm leading-tight">{p3.title}</h3>
-                    <span className="text-white font-bold text-xs bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full shrink-0 ml-2">
-                      {formatPrice(p3.priceAmount, p3.currency, p3.status)}
-                    </span>
+              <Anim variant="up" delay={300} className="relative flex-1 rounded-2xl overflow-hidden">
+                <Link href={`/properties/${p3.id}`} className="group absolute inset-0">
+                  <Image
+                    src={p3.photo || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=2560&q=100"}
+                    alt={p3.title}
+                    fill
+                    unoptimized
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 inset-x-0 px-4 py-4">
+                    <div className="flex items-start justify-between mb-1">
+                      <h3 className="font-bold text-white text-sm leading-tight">{p3.title}</h3>
+                      <span className="text-white font-bold text-xs bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full shrink-0 ml-2">
+                        {formatPrice(p3.priceAmount, p3.currency, p3.status)}
+                      </span>
+                    </div>
+                    <p className="text-white/70 text-xs leading-snug line-clamp-2">{p3.description}</p>
                   </div>
-                  <p className="text-white/70 text-xs leading-snug line-clamp-2">{p3.description}</p>
-                </div>
-              </Link>
+                </Link>
+              </Anim>
             )}
           </div>
 
           {/* Bottom: Card 4 — wide */}
           {p4 && (
-            <div className="flex-1 relative rounded-2xl overflow-hidden">
+            <Anim variant="up" delay={450} className="relative flex-1 rounded-2xl overflow-hidden">
               <Link href={`/properties/${p4.id}`} className="group absolute inset-0">
                 <Image
                   src={p4.photo || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2560&q=100"}
@@ -140,11 +146,11 @@ export default function ExploreSection({ properties }: { properties: Property[] 
                   </span>
                 </div>
               </Link>
-            </div>
+            </Anim>
           )}
 
         </div>
-      </Anim>
+      </div>
 
       {/* See All button */}
       <Anim delay={300} className="flex justify-center mt-8">
