@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const FALLBACK_SLIDES = [
-  { title: "Luxury Villa in Girne", photo: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=95" },
-  { title: "Modern Apartment in Lefkoşa", photo: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&q=95" },
-  { title: "Sea View Penthouse in İskele", photo: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=95" },
-  { title: "Private Villa in Gazimağusa", photo: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1920&q=95" },
+  { title: "Luxury Villa in Girne", photo: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2560&q=100" },
+  { title: "Modern Apartment in Lefko\u015fa", photo: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=2560&q=100" },
+  { title: "Sea View Penthouse in \u0130skele", photo: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=2560&q=100" },
+  { title: "Private Villa in Gazima\u011fusa", photo: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=2560&q=100" },
 ];
 
 interface HeroProperty {
@@ -40,7 +40,7 @@ export default function Hero({ properties = [] }: HeroProps) {
   }, [slides.length]);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] max-h-[900px] overflow-hidden">
+    <section className="relative w-full h-screen min-h-[700px] overflow-hidden">
       {/* Background images */}
       {slides.map((slide, i) => (
         <Image
