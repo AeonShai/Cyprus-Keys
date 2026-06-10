@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useState } from "react";
+import { useLang } from "@/hooks/useLang";
 
 const CONTACT_ITEMS = [
   {
@@ -10,9 +11,10 @@ const CONTACT_ITEMS = [
         <circle cx="12" cy="10" r="3" />
       </svg>
     ),
-    label: "Office",
+    labelKey: "contact_office_label" as const,
     value: "Girne (Kyrenia)",
-    sub: "North Cyprus",
+    subKey: null,
+    subStatic: "North Cyprus",
   },
   {
     icon: (
@@ -20,9 +22,10 @@ const CONTACT_ITEMS = [
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l1.27-.78a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
       </svg>
     ),
-    label: "Phone",
+    labelKey: "contact_phone_label" as const,
     value: "+90 500 000 00 00",
-    sub: "Mon–Sat, 9am–6pm",
+    subKey: "contact_phone_hours" as const,
+    subStatic: null,
   },
   {
     icon: (
@@ -31,9 +34,10 @@ const CONTACT_ITEMS = [
         <polyline points="22,6 12,13 2,6" />
       </svg>
     ),
-    label: "Email",
+    labelKey: "contact_email_label" as const,
     value: "info@cypruskeys.com",
-    sub: "We reply within 24h",
+    subKey: "contact_email_sub" as const,
+    subStatic: null,
   },
   {
     icon: (
@@ -41,9 +45,10 @@ const CONTACT_ITEMS = [
         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
       </svg>
     ),
-    label: "Telegram",
+    labelKey: "contact_telegram_label" as const,
     value: "@cypruskeys",
-    sub: "Instant messaging",
+    subKey: "contact_telegram_sub" as const,
+    subStatic: null,
   },
 ];
 
@@ -56,6 +61,7 @@ interface FormState {
 }
 
 export default function ContactPage() {
+  const { t } = useLang();
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
@@ -109,14 +115,14 @@ export default function ContactPage() {
         />
         <div className="relative max-w-[1275px] mx-auto px-6 py-20 text-center">
           <p className="inline-block text-[10px] font-semibold tracking-[0.25em] text-[var(--clr-accent)] uppercase border border-[var(--clr-accent)]/40 px-4 py-1.5 rounded-full mb-6">
-            Get In Touch
+            {t("contact_hero_badge")}
           </p>
           <h1 className="text-5xl md:text-6xl font-black text-white leading-none mb-5">
-            Let&apos;s Find Your<br />
-            <span className="text-[#D4AF37]">Perfect Property</span>
+            {t("contact_hero_title1")}<br />
+            <span className="text-[#D4AF37]">{t("contact_hero_title2")}</span>
           </h1>
           <p className="text-white/55 text-base max-w-md mx-auto leading-relaxed">
-            Our team in Girne is ready to guide you — from first question to keys in hand.
+            {t("contact_hero_desc")}
           </p>
         </div>
       </section>
@@ -126,7 +132,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {CONTACT_ITEMS.map((item) => (
             <div
-              key={item.label}
+              key={item.labelKey}
               className="bg-[var(--clr-bg)] border border-[var(--clr-border)] rounded-2xl p-5 shadow-sm flex flex-col gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-[var(--clr-surface)] flex items-center justify-center text-[var(--clr-primary)]">
@@ -134,10 +140,12 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-[10px] font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-1">
-                  {item.label}
+                  {t(item.labelKey)}
                 </p>
                 <p className="font-bold text-[var(--clr-text)] text-sm leading-snug">{item.value}</p>
-                <p className="text-[var(--clr-text-secondary)] text-xs mt-0.5">{item.sub}</p>
+                <p className="text-[var(--clr-text-secondary)] text-xs mt-0.5">
+                  {item.subKey ? t(item.subKey) : item.subStatic}
+                </p>
               </div>
             </div>
           ))}
@@ -154,22 +162,22 @@ export default function ContactPage() {
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
-              <h3 className="font-black text-[var(--clr-text)] text-2xl mb-3">Message Sent!</h3>
+              <h3 className="font-black text-[var(--clr-text)] text-2xl mb-3">{t("contact_success_title")}</h3>
               <p className="text-[var(--clr-text-secondary)] text-sm max-w-sm leading-relaxed">
-                Thank you for reaching out. Our team will get back to you within 24 hours.
+                {t("contact_success_desc")}
               </p>
             </div>
           ) : (
             <>
               <div className="text-center mb-10">
-                <h2 className="text-3xl font-black text-[var(--clr-text)] mb-2">Send Us a Message</h2>
-                <p className="text-[var(--clr-text-secondary)] text-sm">Fill in the form and we will get back to you shortly.</p>
+                <h2 className="text-3xl font-black text-[var(--clr-text)] mb-2">{t("contact_form_title")}</h2>
+                <p className="text-[var(--clr-text-secondary)] text-sm">{t("contact_form_desc")}</p>
               </div>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">Full Name *</label>
+                    <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">{t("contact_form_name")} *</label>
                     <input
                       type="text"
                       name="name"
@@ -181,7 +189,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">Email Address *</label>
+                    <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">{t("contact_form_email")} *</label>
                     <input
                       type="email"
                       name="email"
@@ -196,7 +204,7 @@ export default function ContactPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">Phone Number</label>
+                    <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">{t("contact_form_phone")}</label>
                     <input
                       type="tel"
                       name="phone"
@@ -207,32 +215,32 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">Subject</label>
+                    <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">{t("contact_form_subject")}</label>
                     <select
                       name="subject"
                       value={form.subject}
                       onChange={handleChange}
                       className="w-full bg-[var(--clr-surface)] border border-[var(--clr-border)] rounded-xl px-4 py-3 text-sm text-[var(--clr-text)] focus:outline-none focus:border-[var(--clr-primary)] transition-colors"
                     >
-                      <option value="">Select a topic</option>
-                      <option value="buying">Buying a Property</option>
-                      <option value="renting">Renting a Property</option>
-                      <option value="investment">Investment Advice</option>
-                      <option value="legal">Legal &amp; Permit</option>
-                      <option value="other">Other</option>
+                      <option value="">{t("contact_subject_select")}</option>
+                      <option value="buying">{t("contact_subject_buying")}</option>
+                      <option value="renting">{t("contact_subject_renting")}</option>
+                      <option value="investment">{t("contact_subject_investment")}</option>
+                      <option value="legal">{t("contact_subject_legal")}</option>
+                      <option value="other">{t("contact_subject_other")}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">Message *</label>
+                  <label className="block text-xs font-semibold text-[var(--clr-text-secondary)] mb-1.5">{t("contact_form_message")} *</label>
                   <textarea
                     name="message"
                     required
                     rows={5}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Tell us what you are looking for..."
+                    placeholder={t("contact_msg_placeholder")}
                     className="w-full bg-[var(--clr-surface)] border border-[var(--clr-border)] rounded-xl px-4 py-3 text-sm text-[var(--clr-text)] placeholder-[#9CA3AF] focus:outline-none focus:border-[var(--clr-primary)] focus:bg-[var(--clr-bg)] transition-colors resize-none"
                   />
                 </div>
@@ -242,7 +250,7 @@ export default function ContactPage() {
                   disabled={loading}
                   className="w-full bg-[var(--clr-primary)] hover:bg-[var(--clr-primary-hover)] text-white font-semibold text-sm py-4 rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {loading ? "Sending…" : "Send Message"}
+                  {loading ? t("contact_sending") : t("contact_submit")}
                 </button>
                 {error && (
                   <p className="text-red-500 text-sm text-center">{error}</p>
