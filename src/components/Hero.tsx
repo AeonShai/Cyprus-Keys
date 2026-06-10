@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,105 +25,100 @@ interface HeroProps {
 }
 
 export default function Hero({ properties = [] }: HeroProps) {
-  const [photoIdx, setPhotoIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(0);
 
-  const slides: HeroProperty[] = properties.length > 0
-    ? properties
-    : FALLBACK_PHOTOS.map((photo, i) => ({
-        id: i,
-        title: "Modern House",
-        photo,
-        beds: 3,
-        baths: 2,
-        area: 150,
-      }));
+  const photos = properties.length > 0
+    ? properties.map((p) => p.photo)
+    : FALLBACK_PHOTOS;
 
-  const current = slides[photoIdx];
-
-  function prevPhoto() {
-    setPhotoIdx((i) => (i === 0 ? slides.length - 1 : i - 1));
-  }
-  function nextPhoto() {
-    setPhotoIdx((i) => (i === slides.length - 1 ? 0 : i + 1));
-  }
-
-  const isFallback = properties.length === 0;
-  const href = isFallback ? "/properties" : `/properties/${current.id}`;
+  // Auto-advance every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIdx((i) => (i + 1) % photos.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [photos.length]);
 
   return (
-    <div className="relative w-full aspect-[4/3] md:aspect-[1275/626] rounded-[11px] overflow-hidden">
-      {slides.map((slide, i) => (
+    <section className="relative w-full h-screen min-h-[600px] max-h-[900px] overflow-hidden">
+      {/* Background images */}
+      {photos.map((src, i) => (
         <Image
-          key={slide.id}
-          src={slide.photo}
-          alt={slide.title}
+          key={i}
+          src={src}
+          alt="Cyprus property"
           fill
           sizes="100vw"
-          className={`object-cover transition-opacity duration-700 ${i === photoIdx ? "opacity-100" : "opacity-0"}`}
+          className={`object-cover transition-opacity duration-1000 ${i === activeIdx ? "opacity-100" : "opacity-0"}`}
           priority={i === 0}
           quality={95}
         />
       ))}
 
-      {/* Clickable overlay — navigates to property */}
-      <Link href={href} className="absolute inset-0 z-0" aria-label={`View ${current.title}`} />
+      {/* Gradient overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-transparent pointer-events-none" />
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/20 to-transparent pointer-events-none"
-        style={{
-          maskImage: "linear-gradient(to right, black 30%, transparent 65%)",
-          WebkitMaskImage: "linear-gradient(to right, black 30%, transparent 65%)",
-        }}
-      />
+      {/* Content */}
+      <div className="relative z-10 h-full max-w-[1275px] mx-auto px-6 flex flex-col justify-end pb-14 md:pb-20">
 
-      {/* Title + meta */}
-      <div className="absolute left-[7.8%] top-[12.7%] pointer-events-none">
-        <h1 className="font-black text-[var(--clr-text)] leading-none tracking-tight text-[clamp(24px,4.6vw,68px)]">
-          {current.title.split(" ").slice(0, 2).join(" ")}<br />
-          {current.title.split(" ").slice(2).join(" ") || "\u00a0"}
-        </h1>
-        <p className="mt-2 text-[var(--clr-text)]/70 text-[clamp(9px,1vw,14px)]">
-          {current.beds} bedrooms · {current.baths} bathrooms · {current.area} m²
-        </p>
-      </div>
+        {/* Headline */}
+        <div className="max-w-2xl mb-10">
+          <h1 className="font-black text-white leading-none tracking-tight text-[clamp(38px,5.5vw,82px)] mb-5">
+            Find Your Dream<br />Property in Cyprus.
+          </h1>
+          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-lg">
+            Explore the finest villas, apartments and commercial properties in North Cyprus.
+          </p>
+        </div>
 
-      {/* Navigation arrows */}
-      <div className="absolute left-[7.8%] bottom-[22%] z-10">
-        <div className="flex gap-2">
-          <button
-            onClick={(e) => { e.preventDefault(); prevPhoto(); }}
-            className="w-9 h-9 rounded-full border border-black/50 text-[var(--clr-text)] flex items-center justify-center hover:border-black transition-colors"
+        {/* Bottom row */}
+        <div className="flex items-end justify-between gap-4 flex-wrap">
+
+          {/* CTA button */}
+          <Link
+            href="/properties"
+            className="inline-flex items-center gap-2.5 bg-white/15 backdrop-blur-sm border border-white/40 text-white font-semibold text-sm px-6 py-3 rounded-full hover:bg-white/25 transition-colors"
           >
+            Explore property
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6" />
+              <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </button>
-          <button
-            onClick={(e) => { e.preventDefault(); nextPhoto(); }}
-            className="w-9 h-9 rounded-full border border-black/50 text-[var(--clr-text)] flex items-center justify-center hover:border-black transition-colors"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
+          </Link>
+
+          {/* Stats + slide dots */}
+          <div className="flex flex-col items-end gap-3">
+            {/* Rating card */}
+            <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 border border-white/15">
+              <div className="text-center">
+                <p className="text-white font-black text-xl leading-none">
+                  4.9<span className="text-white/50 text-sm font-normal">/5.0</span>
+                </p>
+                <p className="text-white/50 text-xs mt-1">Rating</p>
+              </div>
+              <div className="w-px h-8 bg-white/20" />
+              <div className="text-center">
+                <p className="text-white font-black text-xl leading-none">750+</p>
+                <p className="text-white/50 text-xs mt-1">Reviews</p>
+              </div>
+            </div>
+
+            {/* Slide indicator dots */}
+            <div className="flex gap-1.5">
+              {photos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveIdx(i)}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === activeIdx ? "bg-white w-6 h-2" : "bg-white/40 w-2 h-2"
+                  }`}
+                  aria-label={`Slide ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Thumbnails */}
-      <div className="hidden md:flex absolute right-[3.1%] top-[6%] flex-col gap-2 z-10">
-        {slides.slice(0, 4).map((slide, i) => (
-          <button
-            key={slide.id}
-            onClick={(e) => { e.preventDefault(); setPhotoIdx(i); }}
-            className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
-              i === photoIdx ? "border-white" : "border-white/30"
-            }`}
-          >
-            <Image src={slide.photo} alt={slide.title} width={48} height={48} className="object-cover w-full h-full" />
-          </button>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }
