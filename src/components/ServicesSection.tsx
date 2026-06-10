@@ -112,14 +112,20 @@ export default function ServicesSection() {
           </a>
         </Anim>
 
-        {/* Services grid — no cards, just icon + title + description */}
+        {/* Services grid — icon → title → description sequential reveal */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
           {SERVICE_KEYS.map((s, i) => (
-            <Anim key={s.titleKey} delay={i * 80}>
-              <div className="text-[var(--clr-text)] mb-3">{s.icon}</div>
-              <h3 className="font-bold text-[var(--clr-text)] text-base mb-3 leading-snug">{t(s.titleKey)}</h3>
-              <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed">{t(s.descKey)}</p>
-            </Anim>
+            <div key={s.titleKey}>
+              <Anim delay={i * 40} className="text-[var(--clr-text)] mb-3">
+                {s.icon}
+              </Anim>
+              <Anim delay={350 + i * 40}>
+                <h3 className="font-bold text-[var(--clr-text)] text-base mb-3 leading-snug">{t(s.titleKey)}</h3>
+              </Anim>
+              <Anim delay={650 + i * 40}>
+                <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed">{t(s.descKey)}</p>
+              </Anim>
+            </div>
           ))}
         </div>
 
