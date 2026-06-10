@@ -8,6 +8,7 @@ const translations = {
     nav_projects: "Projects",
     nav_contacts: "Contacts",
     nav_language: "Language",
+    nav_purchase_guide: "Purchase Guide",
 
     // HeroSearch
     search_tab_sale: "For Sale",
@@ -80,6 +81,7 @@ const translations = {
     nav_projects: "Projeler",
     nav_contacts: "İletişim",
     nav_language: "Dil",
+    nav_purchase_guide: "Satın Alma Rehberi",
 
     search_tab_sale: "Satılık",
     search_tab_rent: "Kiralık",
@@ -148,6 +150,7 @@ const translations = {
     nav_projects: "Проекты",
     nav_contacts: "Контакты",
     nav_language: "Язык",
+    nav_purchase_guide: "Руководство покупателя",
 
     search_tab_sale: "Продажа",
     search_tab_rent: "Аренда",

@@ -9,6 +9,7 @@ const NAV_LINKS_KEYS = [
   { key: "nav_buy" as const, href: "/properties?status=sale" },
   { key: "nav_rent" as const, href: "/properties?status=rent" },
   { key: "nav_projects" as const, href: "/projects" },
+  { key: "nav_purchase_guide" as const, href: "/purchase-guide" },
   { key: "nav_contacts" as const, href: "/contacts" },
 ];
 
