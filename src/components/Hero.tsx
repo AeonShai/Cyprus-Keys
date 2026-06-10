@@ -68,12 +68,9 @@ export default function Hero({ properties = [] }: HeroProps) {
         {/* Headline with glass card */}
         <div className="mb-10 hero-title">
           <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-6 md:p-8 inline-block max-w-2xl">
-            <h1 className="font-black text-white leading-tight tracking-tight text-[clamp(30px,4.5vw,68px)] mb-4">
+            <h1 className="font-black text-white leading-tight tracking-tight text-[clamp(30px,4.5vw,68px)] line-clamp-3 overflow-hidden">
               {slides[activeIdx].title}
             </h1>
-            <p className="text-white/70 text-base leading-relaxed max-w-lg hero-subtitle">
-              {t("hero_subtitle")}
-            </p>
           </div>
         </div>
 
