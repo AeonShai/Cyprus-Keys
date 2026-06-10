@@ -1,6 +1,19 @@
-﻿import Image from "next/image";
+﻿"use client";
+
+import Image from "next/image";
 import Link from "next/link";
-import db from "@/lib/db";
+import { useLang } from "@/hooks/useLang";
+
+type Property = {
+  id: number;
+  title: string;
+  location: string;
+  priceAmount: number;
+  currency: string;
+  photo: string | null;
+  description: string | null;
+  status: string;
+};
 
 function formatPrice(amount: number, currency: string, status: string) {
   const sym = currency === "GBP" ? "£" : currency === "EUR" ? "€" : "$";
@@ -9,13 +22,8 @@ function formatPrice(amount: number, currency: string, status: string) {
   return `${sym}${amount}${status === "rent" ? "/mo" : ""}`;
 }
 
-export default async function ExploreSection() {
-  const properties = await db.property.findMany({
-    where: { isPublished: true },
-    orderBy: { createdAt: "desc" },
-    take: 4,
-    select: { id: true, title: true, location: true, priceAmount: true, currency: true, photo: true, description: true, status: true },
-  });
+export default function ExploreSection({ properties }: { properties: Property[] }) {
+  const { t } = useLang();
 
   if (properties.length === 0) return null;
 
@@ -27,11 +35,10 @@ export default async function ExploreSection() {
       {/* Header */}
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-black text-[var(--clr-text)] mb-3">
-          Featured Homes with Modern Design
+          {t("explore_title")}
         </h2>
         <p className="text-[var(--clr-text-secondary)] text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-          Explore a curated collection of beautifully crafted homes that blend modern design,
-          smart functionality and timeless appeal.
+          {t("explore_desc")}
         </p>
       </div>
 
@@ -144,7 +151,7 @@ export default async function ExploreSection() {
           href="/properties"
           className="inline-flex items-center gap-2 bg-[var(--clr-primary)] hover:bg-[var(--clr-primary-hover)] text-white font-semibold text-sm px-7 py-3 rounded-full transition-colors"
         >
-          See All Properties
+          {t("explore_all")}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>

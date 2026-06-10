@@ -33,10 +33,10 @@ export default function FeaturedProjects() {
         {/* Left: text block */}
         <div className="lg:w-[38%] shrink-0">
           <h2 className="text-3xl md:text-4xl font-black text-[var(--clr-text)] leading-tight mb-5">
-            Where Expertise Meets<br />Exceptional Service
+            {t("projects_title")}
           </h2>
           <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed mb-8 max-w-sm">
-            We set our sights high for every person who walks through our door. From first-time homebuyers to seasoned investors, all clients are greeted by our diverse and knowledgeable team.
+            {t("projects_desc")}
           </p>
           <a
             href="/projects"

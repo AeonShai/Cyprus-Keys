@@ -81,22 +81,24 @@ export default function Navbar() {
           <div ref={langRef} className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className={`flex items-center gap-1.5 text-sm transition-colors cursor-pointer ${ isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black" }`}
+              className={`flex items-center gap-1 text-sm transition-colors cursor-pointer ${ isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black" }`}
             >
               <GlobeIcon />
-              <span>{t("nav_language")}</span>
+              <span className="font-semibold text-xs">{currentLang.code.toUpperCase()}</span>
               <ChevronDown />
             </button>
             {langOpen && (
-              <div className="absolute top-full right-0 mt-2 w-40 bg-[#0B1F3A] border border-white/20 rounded-xl shadow-lg overflow-hidden">
+              <div className={`absolute top-full right-0 mt-2 w-36 border rounded-xl shadow-lg overflow-hidden ${
+                isHome ? "bg-[#0B1F3A] border-white/20" : "bg-white border-black/10"
+              }`}>
                 {LANGUAGES.map((l) => (
                   <button
                     key={l.code}
                     onClick={() => { setLang(l.code); setLangOpen(false); }}
                     className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors text-left ${
                       lang === l.code
-                        ? "bg-white/20 text-white font-semibold"
-                        : "text-white/70 hover:bg-white/10"
+                        ? isHome ? "bg-white/20 text-white font-semibold" : "bg-black/10 text-black font-semibold"
+                        : isHome ? "text-white/70 hover:bg-white/10" : "text-black/70 hover:bg-black/5"
                     }`}
                   >
                     <span>{l.label}</span>
