@@ -34,20 +34,12 @@ function ChevronDown() {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const { lang, setLang, t } = useLang();
   const pathname = usePathname();
   const isHome = pathname === "/";
 
   const currentLang = LANGUAGES.find((l) => l.code === lang) ?? LANGUAGES[0];
-
-  // Scroll detection for background
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Close lang dropdown on outside click
   useEffect(() => {
@@ -61,8 +53,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-      scrolled || !isHome ? "bg-[#0B1F3A]" : "bg-transparent"
+    <header className={`absolute top-0 left-0 right-0 z-50 ${
+      isHome ? "bg-transparent" : "bg-[#0B1F3A]"
     }`}>
       <nav className="max-w-[1600px] mx-auto px-8 md:px-12 py-3 flex items-center justify-between">
         {/* Logo */}
@@ -70,10 +62,10 @@ export default function Navbar() {
           <Image
             src={IMAGES.logo}
             alt="Cyprus Keys logo"
-            width={320}
-            height={100}
+            width={260}
+            height={80}
             priority
-            style={{ height: "70px", width: "auto" }}
+            style={{ height: "52px", width: "auto", filter: "brightness(0) invert(1)" }}
           />
         </Link>
 
