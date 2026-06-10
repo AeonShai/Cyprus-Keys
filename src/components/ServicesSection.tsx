@@ -1,5 +1,7 @@
 ﻿"use client";
 
+import { useLang } from "@/hooks/useLang";
+
 const SERVICES = [
   {
     title: "Legal Consultancy",
