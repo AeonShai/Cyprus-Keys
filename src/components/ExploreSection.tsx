@@ -150,7 +150,7 @@ export default function ExploreSection({ properties }: { properties: Property[] 
       <Anim delay={300} className="flex justify-center mt-8">
         <Link
           href="/properties"
-          className="inline-flex items-center gap-2 bg-[var(--clr-primary)] hover:bg-[var(--clr-primary-hover)] text-white font-semibold text-sm px-7 py-3 rounded-full transition-colors"
+          className="inline-flex items-center gap-2 bg-black hover:bg-black/80 text-white font-semibold text-sm px-7 py-3 rounded-full transition-colors"
         >
           {t("explore_all")}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
