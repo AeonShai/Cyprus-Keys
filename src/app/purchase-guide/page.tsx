@@ -50,29 +50,55 @@ export default function PurchaseGuidePage() {
             <h2 className="text-2xl md:text-3xl font-black text-[var(--clr-text)] mt-2">{t("pg_procedure_title")}</h2>
           </div>
 
-          <div className="space-y-4">
-            {steps.map((step, i) => (
-              <Anim key={step.number} delay={i * 80}>
-              <div className={`border rounded-2xl p-6 md:p-8 ${step.color}`}>
-                <div className="flex items-start gap-5">
-                  <div className={`shrink-0 text-2xl font-black ${step.accent} opacity-40 leading-none pt-0.5`}>{step.number}</div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg text-[var(--clr-text)] mb-3">{step.title}</h3>
-                    <ul className="space-y-2">
-                      {step.items.map((item, j) => (
-                        <li key={j} className="flex items-start gap-2.5 text-[var(--clr-text-secondary)] text-sm leading-relaxed">
-                          <svg className={`shrink-0 mt-0.5 ${step.accent}`} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="20 6 9 17 4 12" />
-                          </svg>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+          {/* Timeline: alternating left-right on desktop */}
+          <div className="relative">
+            {/* Center vertical line (desktop only) */}
+            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-[var(--clr-border)] -translate-x-1/2" />
+
+            <div className="space-y-6 lg:space-y-8">
+              {steps.map((step, i) => {
+                const isLeft = i % 2 === 0;
+                return (
+                  <div
+                    key={step.number}
+                    className={`flex items-start lg:gap-0 gap-4 ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"}`}
+                  >
+                    {/* Card */}
+                    <Anim
+                      variant={isLeft ? "left" : "right"}
+                      delay={i * 80}
+                      className="w-full lg:w-[45%]"
+                    >
+                      <div className="border border-[var(--clr-border)] rounded-2xl p-6 md:p-8 bg-[var(--clr-bg)]">
+                        <div className="flex items-start gap-4">
+                          <div className="shrink-0 w-2.5 h-2.5 rounded-full bg-[var(--clr-text)] mt-2" />
+                          <div className="flex-1">
+                            <h3 className="font-bold text-lg text-[var(--clr-text)] mb-3">{step.title}</h3>
+                            <ul className="space-y-2">
+                              {step.items.map((item, j) => (
+                                <li key={j} className="flex items-start gap-2.5 text-[var(--clr-text-secondary)] text-sm leading-relaxed">
+                                  <div className="shrink-0 mt-[7px] w-1 h-1 rounded-full bg-[var(--clr-text-secondary)]" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </Anim>
+
+                    {/* Center dot (desktop only) */}
+                    <div className="hidden lg:flex w-[10%] justify-center pt-8 flex-shrink-0">
+                      <div className="w-3 h-3 rounded-full bg-[var(--clr-text)] relative z-10 ring-4 ring-white" />
+                    </div>
+
+                    {/* Empty opposite side */}
+                    <div className="hidden lg:block lg:w-[45%]" />
                   </div>
-                </div>
-              </div>
-              </Anim>
-            ))}
+                );
+              })}
+            </div>
+          </div>
           </div>
         </div>
 
