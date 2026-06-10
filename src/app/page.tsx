@@ -2,7 +2,6 @@ import Hero from "@/components/Hero";
 import ExploreSection from "@/components/ExploreSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import ServicesSection from "@/components/ServicesSection";
-import LeadCTA from "@/components/LeadCTA";
 import db from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -31,9 +30,6 @@ export default async function Home() {
 
       {/* Section 5: Services / Value proposition */}
       <ServicesSection />
-
-      {/* Section 6: Lead generation CTA */}
-      <LeadCTA />
 
     </main>
   );
