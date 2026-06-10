@@ -1,7 +1,4 @@
-﻿"use client";
-
-import Image from "next/image";
-import { useState } from "react";
+﻿import Image from "next/image";
 import { IMAGES } from "@/constants/images";
 
 const NAV_LINKS = [
@@ -44,23 +41,17 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-
   return (
     <footer className="w-full bg-[#0B1F3A]">
       <div className="max-w-[1275px] mx-auto px-6 md:px-12 pt-14 pb-8">
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-8 pb-12 border-b border-white/10">
 
           {/* Col 1: Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <Image src={IMAGES.logo} alt="Cyprus Keys" width={40} height={40} className="brightness-0 invert opacity-90" />
-              <div className="flex flex-col leading-tight">
-                <span className="font-black text-white tracking-widest text-base">Cyprus Keys</span>
-                <span className="text-[10px] font-semibold tracking-[0.5em] text-white/40 uppercase">Real Estate</span>
-              </div>
+              <Image src={IMAGES.logo} alt="Cyprus Keys" width={48} height={48} className="brightness-0 invert opacity-90" />
             </div>
             <p className="text-white/55 text-sm leading-relaxed mb-6">
               Your trusted partner for buying, renting and investing in North Cyprus real estate.
@@ -118,26 +109,6 @@ export default function Footer() {
                 <span className="text-white/70 text-sm">Girne (Kyrenia),<br />North Cyprus</span>
               </li>
             </ul>
-          </div>
-
-          {/* Col 4: Newsletter */}
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-white/40 uppercase mb-5">Newsletter</p>
-            <p className="text-white/60 text-sm leading-relaxed mb-4">
-              Get the latest listings and market insights delivered to your inbox.
-            </p>
-            <div className="flex flex-col gap-3">
-              <input
-                type="email"
-                placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/40 transition-colors"
-              />
-              <button className="w-full bg-[var(--clr-accent)] hover:opacity-90 text-white text-sm font-semibold py-2.5 rounded-xl transition-opacity">
-                Subscribe
-              </button>
-            </div>
           </div>
 
         </div>
