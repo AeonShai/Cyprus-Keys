@@ -78,8 +78,8 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filtered.map((property) => (
-                  <PropertyCard key={property.id} property={property} />
+                {filtered.map((property, i) => (
+                  <PropertyCard key={property.id} property={property} index={i} />
                 ))}
               </div>
             )}

@@ -176,3 +176,11 @@ input[type=number] {
 .navbar-anim {
   animation: ck-fade-down 0.6s cubic-bezier(0.22,1,0.36,1) both;
 }
+
+/* Page-load animations (no IntersectionObserver needed) */
+.page-slide-left {
+  animation: ck-fade-right 0.55s cubic-bezier(0.22,1,0.36,1) 0.05s both;
+}
+.page-fade-up {
+  animation: ck-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}

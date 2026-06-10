@@ -34,11 +34,16 @@ function AreaIcon() {
 
 interface PropertyCardProps {
   property: PropertyModel;
+  index?: number;
 }
 
-export default function PropertyCard({ property }: PropertyCardProps) {
+export default function PropertyCard({ property, index = 0 }: PropertyCardProps) {
   return (
-    <Link href={`/properties/${property.id}`} className="group block bg-[var(--clr-bg)] rounded-2xl overflow-hidden shadow-sm border border-[var(--clr-border)] hover:shadow-md transition-shadow">
+    <Link
+      href={`/properties/${property.id}`}
+      className="group block bg-[var(--clr-bg)] rounded-2xl overflow-hidden shadow-sm border border-[var(--clr-border)] hover:shadow-md transition-shadow page-fade-up"
+      style={{ animationDelay: `${index * 60}ms` }}
+    >
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={property.photo}
