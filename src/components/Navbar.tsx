@@ -77,7 +77,7 @@ export default function Navbar() {
               className="flex items-center gap-1.5 text-sm text-[var(--clr-text-secondary)] hover:text-[var(--clr-primary)] transition-colors cursor-pointer"
             >
               <GlobeIcon />
-              <span>{currentLang.flag} {currentLang.code.toUpperCase()}</span>
+              <span>{t("nav_language")}</span>
               <ChevronDown />
             </button>
             {langOpen && (
@@ -92,7 +92,6 @@ export default function Navbar() {
                         : "text-[var(--clr-text)] hover:bg-[var(--clr-surface)]"
                     }`}
                   >
-                    <span>{l.flag}</span>
                     <span>{l.label}</span>
                   </button>
                 ))}
@@ -144,7 +143,7 @@ export default function Navbar() {
                     : "border border-[var(--clr-border)] text-[var(--clr-text-secondary)] hover:bg-[var(--clr-surface)]"
                 }`}
               >
-                {l.flag} {l.code.toUpperCase()}
+                {l.code.toUpperCase()}
               </button>
             ))}
           </div>

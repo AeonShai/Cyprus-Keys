@@ -67,7 +67,7 @@ export default function HeroSearch() {
   function handleSearch() {
     const params = new URLSearchParams();
     params.set("status", activeTab === "satilik" ? "sale" : "rent");
-    if (region) params.set("location", region);
+    if (region) params.set("city", region);
     if (propertyType) params.set("type", propertyType.toLowerCase());
     if (minPrice) params.set("minPrice", minPrice);
     if (maxPrice) params.set("maxPrice", maxPrice);
