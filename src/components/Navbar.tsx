@@ -53,9 +53,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`absolute top-0 left-0 right-0 z-50 ${
-      isHome ? "bg-transparent" : "bg-[#0B1F3A]"
-    }`}>
+    <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
       <nav className="max-w-[1600px] mx-auto px-8 md:px-12 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
@@ -65,21 +63,25 @@ export default function Navbar() {
             width={240}
             height={72}
             priority
-            style={{ height: "42px", width: "auto", filter: "brightness(0) invert(1)" }}
+            style={{ height: "42px", width: "auto", filter: isHome ? "brightness(0) invert(1)" : "brightness(0)" }}
           />
         </Link>
 
-        {/* Desktop nav links — glass pill */}
-        <div className="hidden md:flex items-center gap-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-2.5">
-          <Link href="/properties?status=sale" className="text-sm text-white/80 hover:text-white transition-colors">{t("nav_buy")}</Link>
-          <Link href="/properties?status=rent" className="text-sm text-white/80 hover:text-white transition-colors">{t("nav_rent")}</Link>
-          <Link href="/projects" className="text-sm text-white/80 hover:text-white transition-colors">{t("nav_projects")}</Link>
+        {/* Desktop nav links — glass pill on home, plain on other pages */}
+        <div className={`hidden md:flex items-center gap-6 rounded-full px-6 py-2.5 ${
+          isHome
+            ? "bg-white/10 backdrop-blur-md border border-white/20"
+            : "bg-black/5 border border-black/10"
+        }`}>
+          <Link href="/properties?status=sale" className={`text-sm transition-colors ${ isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black" }`}>{t("nav_buy")}</Link>
+          <Link href="/properties?status=rent" className={`text-sm transition-colors ${ isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black" }`}>{t("nav_rent")}</Link>
+          <Link href="/projects" className={`text-sm transition-colors ${ isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black" }`}>{t("nav_projects")}</Link>
 
           {/* Language picker */}
           <div ref={langRef} className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="flex items-center gap-1.5 text-sm text-white/80 hover:text-white transition-colors cursor-pointer"
+              className={`flex items-center gap-1.5 text-sm transition-colors cursor-pointer ${ isHome ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black" }`}
             >
               <GlobeIcon />
               <span>{t("nav_language")}</span>
@@ -109,7 +111,11 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-2">
           <Link
             href="/contacts"
-            className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/30 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+            className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
+              isHome
+                ? "bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20"
+                : "bg-black/5 border border-black/15 text-black/80 hover:bg-black/10"
+            }`}
           >
             {t("nav_contacts")}
           </Link>
@@ -121,9 +127,9 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 transition-all duration-300 ${isHome ? "bg-white" : "bg-black"} ${open ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 transition-all duration-300 ${isHome ? "bg-white" : "bg-black"} ${open ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-0.5 transition-all duration-300 ${isHome ? "bg-white" : "bg-black"} ${open ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
       </nav>
 

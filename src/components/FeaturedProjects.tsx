@@ -49,21 +49,10 @@ export default function FeaturedProjects() {
           </a>
         </div>
 
-        {/* Right: 3-image bento */}
-        <div className="flex-1 w-full flex gap-3" style={{ height: "420px" }}>
+        {/* Right: 3-image bento — two stacked left + one tall right */}
+        <div className="flex-1 w-full flex gap-3" style={{ height: "480px" }}>
 
-          {/* Big image left */}
-          <div className="w-[48%] relative rounded-2xl overflow-hidden">
-            <Image
-              src={PROJECTS[2].photo}
-              alt={PROJECTS[2].name}
-              fill
-              unoptimized
-              className="object-cover hover:scale-105 transition-transform duration-700"
-            />
-          </div>
-
-          {/* Two stacked right */}
+          {/* Two stacked left */}
           <div className="flex-1 flex flex-col gap-3">
             <div className="flex-1 relative rounded-2xl overflow-hidden">
               <Image
@@ -76,13 +65,24 @@ export default function FeaturedProjects() {
             </div>
             <div className="flex-1 relative rounded-2xl overflow-hidden">
               <Image
-                src={PROJECTS[1].photo}
-                alt={PROJECTS[1].name}
+                src={PROJECTS[2].photo}
+                alt={PROJECTS[2].name}
                 fill
                 unoptimized
                 className="object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
+          </div>
+
+          {/* One tall right */}
+          <div className="w-[46%] relative rounded-2xl overflow-hidden">
+            <Image
+              src={PROJECTS[1].photo}
+              alt={PROJECTS[1].name}
+              fill
+              unoptimized
+              className="object-cover hover:scale-105 transition-transform duration-700"
+            />
           </div>
 
         </div>
