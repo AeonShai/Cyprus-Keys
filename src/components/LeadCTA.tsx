@@ -16,7 +16,7 @@ export default function LeadCTA() {
 
   return (
     <section className="w-full bg-[var(--clr-primary)] py-20">
-      <div className="max-w-[1275px] mx-auto px-6">
+      <div className="max-w-[1600px] mx-auto px-8 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* Left: copy */}

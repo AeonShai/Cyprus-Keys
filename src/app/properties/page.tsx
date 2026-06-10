@@ -51,7 +51,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
 
   return (
     <main className="min-h-screen bg-[var(--clr-surface)]">
-      <div className="max-w-[1275px] mx-auto px-6 py-10">
+      <div className="max-w-[1600px] mx-auto px-8 md:px-12 py-10">
         {/* Page header */}
         <div className="mb-8">
           <p className="text-xs font-semibold tracking-widest text-[var(--clr-text-secondary)] uppercase mb-2">

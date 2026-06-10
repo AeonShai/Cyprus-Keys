@@ -48,8 +48,8 @@ export default async function ProjectDetailPage({
           quality={95}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full max-w-[1275px] mx-auto px-6 pb-10">
-          <div className="max-w-[1275px] mx-auto">
+        <div className="absolute bottom-0 left-0 w-full max-w-[1600px] mx-auto px-8 md:px-12 pb-10">
+          <div className="max-w-[1600px] mx-auto">
             <span className={`text-xs font-semibold px-3 py-1 rounded-full mb-4 inline-block ${STATUS_COLOR[project.status] ?? "bg-gray-100 text-gray-600"}`}>
               {STATUS_LABEL[project.status] ?? project.status}
             </span>
@@ -61,7 +61,7 @@ export default async function ProjectDetailPage({
         </div>
       </div>
 
-      <div className="max-w-[1275px] mx-auto px-6 py-14">
+      <div className="max-w-[1600px] mx-auto px-8 md:px-12 py-14">
         <div className="grid grid-cols-3 gap-12 items-start">
 
           {/* Left: Main content */}

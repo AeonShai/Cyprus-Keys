@@ -63,7 +63,7 @@ export default async function ProjectsPage() {
 
   return (
     <main className="min-h-screen">
-      <div className="max-w-[1275px] mx-auto px-6 py-16">
+      <div className="max-w-[1600px] mx-auto px-8 md:px-12 py-16">
 
         {/* Header */}
         <div className="mb-12">

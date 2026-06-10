@@ -86,7 +86,7 @@ export default function ServicesSection() {
   const { t } = useLang();
   return (
     <section className="w-full py-16">
-      <div className="max-w-[1275px] mx-auto px-6">
+      <div className="max-w-[1600px] mx-auto px-8 md:px-12">
 
         {/* Header */}
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-12">

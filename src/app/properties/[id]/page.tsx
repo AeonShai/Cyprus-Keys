@@ -18,7 +18,7 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
 
   return (
     <main className="min-h-screen bg-[var(--clr-surface)]">
-      <div className="max-w-[1275px] mx-auto px-6 py-10">
+      <div className="max-w-[1600px] mx-auto px-8 md:px-12 py-10">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-xs text-[var(--clr-text-secondary)] mb-6">
           <Link href="/" className="hover:text-[var(--clr-primary)] transition-colors">Home</Link>

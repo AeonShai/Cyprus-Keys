@@ -42,7 +42,7 @@ const PROJECTS = [
 export default function FeaturedProjects() {
   const { t } = useLang();
   return (
-    <section className="w-full max-w-[1275px] mx-auto px-6 py-14">
+    <section className="w-full max-w-[1600px] mx-auto px-8 md:px-12 py-14">
 
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">

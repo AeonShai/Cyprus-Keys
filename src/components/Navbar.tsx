@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <header className="w-full bg-[var(--clr-bg)] relative z-50">
-      <nav className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+        <nav className="max-w-[1600px] mx-auto px-8 md:px-12 py-2 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
           <Image

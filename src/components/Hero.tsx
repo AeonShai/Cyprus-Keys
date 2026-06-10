@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const FALLBACK_PHOTOS = [
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=95",
-  "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&q=95",
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=95",
-  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1920&q=95",
+const FALLBACK_SLIDES = [
+  { title: "Luxury Villa in Girne", photo: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=95" },
+  { title: "Modern Apartment in Lefkoşa", photo: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&q=95" },
+  { title: "Sea View Penthouse in İskele", photo: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=95" },
+  { title: "Private Villa in Gazimağusa", photo: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1920&q=95" },
 ];
 
 interface HeroProperty {
@@ -27,26 +27,26 @@ interface HeroProps {
 export default function Hero({ properties = [] }: HeroProps) {
   const [activeIdx, setActiveIdx] = useState(0);
 
-  const photos = properties.length > 0
-    ? properties.map((p) => p.photo)
-    : FALLBACK_PHOTOS;
+  const slides = properties.length > 0
+    ? properties.map((p) => ({ title: p.title, photo: p.photo }))
+    : FALLBACK_SLIDES;
 
   // Auto-advance every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIdx((i) => (i + 1) % photos.length);
+      setActiveIdx((i) => (i + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [photos.length]);
+  }, [slides.length]);
 
   return (
     <section className="relative w-full h-screen min-h-[600px] max-h-[900px] overflow-hidden">
       {/* Background images */}
-      {photos.map((src, i) => (
+      {slides.map((slide, i) => (
         <Image
           key={i}
-          src={src}
-          alt="Cyprus property"
+          src={slide.photo}
+          alt={slide.title}
           fill
           sizes="100vw"
           className={`object-cover transition-opacity duration-1000 ${i === activeIdx ? "opacity-100" : "opacity-0"}`}
@@ -60,12 +60,12 @@ export default function Hero({ properties = [] }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-10 h-full max-w-[1275px] mx-auto px-6 flex flex-col justify-end pb-14 md:pb-20">
+      <div className="relative z-10 h-full max-w-[1600px] mx-auto px-8 md:px-12 flex flex-col justify-end pb-14 md:pb-20">
 
         {/* Headline */}
-        <div className="max-w-2xl mb-10">
-          <h1 className="font-black text-white leading-none tracking-tight text-[clamp(38px,5.5vw,82px)] mb-5">
-            Find Your Dream<br />Property in Cyprus.
+        <div className="max-w-3xl mb-10">
+          <h1 className="font-black text-white leading-tight tracking-tight text-[clamp(36px,5vw,76px)] mb-5">
+            {slides[activeIdx].title}
           </h1>
           <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-lg">
             Explore the finest villas, apartments and commercial properties in North Cyprus.
@@ -86,26 +86,9 @@ export default function Hero({ properties = [] }: HeroProps) {
             </svg>
           </Link>
 
-          {/* Stats + slide dots */}
-          <div className="flex flex-col items-end gap-3">
-            {/* Rating card */}
-            <div className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 border border-white/15">
-              <div className="text-center">
-                <p className="text-white font-black text-xl leading-none">
-                  4.9<span className="text-white/50 text-sm font-normal">/5.0</span>
-                </p>
-                <p className="text-white/50 text-xs mt-1">Rating</p>
-              </div>
-              <div className="w-px h-8 bg-white/20" />
-              <div className="text-center">
-                <p className="text-white font-black text-xl leading-none">750+</p>
-                <p className="text-white/50 text-xs mt-1">Reviews</p>
-              </div>
-            </div>
-
-            {/* Slide indicator dots */}
-            <div className="flex gap-1.5">
-              {photos.map((_, i) => (
+          {/* Slide indicator dots */}
+          <div className="flex gap-1.5">
+              {slides.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveIdx(i)}
@@ -115,7 +98,6 @@ export default function Hero({ properties = [] }: HeroProps) {
                   aria-label={`Slide ${i + 1}`}
                 />
               ))}
-            </div>
           </div>
         </div>
       </div>

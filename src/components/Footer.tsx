@@ -47,7 +47,7 @@ export default function Footer() {
   const { t } = useLang();
   return (
     <footer className="w-full bg-[#0B1F3A]">
-      <div className="max-w-[1275px] mx-auto px-6 md:px-12 pt-14 pb-8">
+      <div className="max-w-[1600px] mx-auto px-8 md:px-12 pt-14 pb-8">
 
         {/* Main grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-8 pb-12 border-b border-white/10">

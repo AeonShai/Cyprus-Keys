@@ -33,7 +33,7 @@ const PROPERTIES = [
 
 export default function ExploreSection() {
   return (
-    <section className="w-full max-w-[1275px] mx-auto px-6 py-12">
+    <section className="w-full max-w-[1600px] mx-auto px-8 md:px-12 py-12">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
