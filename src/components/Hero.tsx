@@ -49,9 +49,10 @@ export default function Hero({ properties = [] }: HeroProps) {
           alt={slide.title}
           fill
           sizes="100vw"
+          unoptimized
           className={`object-cover transition-opacity duration-1000 ${i === activeIdx ? "opacity-100" : "opacity-0"}`}
           priority={i === 0}
-          quality={95}
+          quality={100}
         />
       ))}
 
