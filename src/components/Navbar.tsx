@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { IMAGES } from "@/constants/images";
 import { useLang } from "@/hooks/useLang";
 import type { Lang } from "@/lib/translations";
@@ -33,10 +34,20 @@ function ChevronDown() {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const { lang, setLang, t } = useLang();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   const currentLang = LANGUAGES.find((l) => l.code === lang) ?? LANGUAGES[0];
+
+  // Scroll detection for background
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Close lang dropdown on outside click
   useEffect(() => {
@@ -50,8 +61,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="w-full bg-[var(--clr-bg)] relative z-50">
-        <nav className="max-w-[1600px] mx-auto px-8 md:px-12 py-2 flex items-center justify-between">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      scrolled || !isHome ? "bg-[#0B1F3A]" : "bg-transparent"
+    }`}>
+      <nav className="max-w-[1600px] mx-auto px-8 md:px-12 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
           <Image
@@ -64,32 +77,32 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-7">
-          <Link href="/properties?status=sale" className="text-sm text-[var(--clr-text-secondary)] hover:text-[var(--clr-primary)] transition-colors">{t("nav_buy")}</Link>
-          <Link href="/properties?status=rent" className="text-sm text-[var(--clr-text-secondary)] hover:text-[var(--clr-primary)] transition-colors">{t("nav_rent")}</Link>
-          <Link href="/projects" className="text-sm text-[var(--clr-text-secondary)] hover:text-[var(--clr-primary)] transition-colors">{t("nav_projects")}</Link>
+        {/* Desktop nav links — glass pill */}
+        <div className="hidden md:flex items-center gap-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-2.5">
+          <Link href="/properties?status=sale" className="text-sm text-white/80 hover:text-white transition-colors">{t("nav_buy")}</Link>
+          <Link href="/properties?status=rent" className="text-sm text-white/80 hover:text-white transition-colors">{t("nav_rent")}</Link>
+          <Link href="/projects" className="text-sm text-white/80 hover:text-white transition-colors">{t("nav_projects")}</Link>
 
           {/* Language picker */}
           <div ref={langRef} className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="flex items-center gap-1.5 text-sm text-[var(--clr-text-secondary)] hover:text-[var(--clr-primary)] transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 text-sm text-white/80 hover:text-white transition-colors cursor-pointer"
             >
               <GlobeIcon />
               <span>{t("nav_language")}</span>
               <ChevronDown />
             </button>
             {langOpen && (
-              <div className="absolute top-full right-0 mt-2 w-40 bg-[var(--clr-bg)] border border-[var(--clr-border)] rounded-xl shadow-lg overflow-hidden">
+              <div className="absolute top-full right-0 mt-2 w-40 bg-[#0B1F3A] border border-white/20 rounded-xl shadow-lg overflow-hidden">
                 {LANGUAGES.map((l) => (
                   <button
                     key={l.code}
                     onClick={() => { setLang(l.code); setLangOpen(false); }}
                     className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors text-left ${
                       lang === l.code
-                        ? "bg-[var(--clr-primary)] text-white font-semibold"
-                        : "text-[var(--clr-text)] hover:bg-[var(--clr-surface)]"
+                        ? "bg-white/20 text-white font-semibold"
+                        : "text-white/70 hover:bg-white/10"
                     }`}
                   >
                     <span>{l.label}</span>
@@ -104,7 +117,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-2">
           <Link
             href="/contacts"
-            className="px-4 py-1.5 rounded-full border border-[var(--clr-primary)] text-[13px] font-medium text-[var(--clr-primary)] hover:bg-[var(--clr-primary)] hover:text-white transition-colors"
+            className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/30 text-sm font-semibold text-white hover:bg-white/20 transition-colors"
           >
             {t("nav_contacts")}
           </Link>
@@ -116,31 +129,31 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-6 h-0.5 bg-[var(--clr-text)] transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-[var(--clr-text)] transition-all duration-300 ${open ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-[var(--clr-text)] transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
       </nav>
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[var(--clr-bg)] border-t border-[var(--clr-border)] shadow-lg px-6 py-5 flex flex-col gap-4">
-          <Link href="/properties?status=sale" className="text-base text-[var(--clr-text)] hover:text-[var(--clr-primary)] transition-colors" onClick={() => setOpen(false)}>{t("nav_buy")}</Link>
-          <Link href="/properties?status=rent" className="text-base text-[var(--clr-text)] hover:text-[var(--clr-primary)] transition-colors" onClick={() => setOpen(false)}>{t("nav_rent")}</Link>
-          <Link href="/projects" className="text-base text-[var(--clr-text)] hover:text-[var(--clr-primary)] transition-colors" onClick={() => setOpen(false)}>{t("nav_projects")}</Link>
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0B1F3A] border-t border-white/20 shadow-lg px-6 py-5 flex flex-col gap-4">
+          <Link href="/properties?status=sale" className="text-base text-white/80 hover:text-white transition-colors" onClick={() => setOpen(false)}>{t("nav_buy")}</Link>
+          <Link href="/properties?status=rent" className="text-base text-white/80 hover:text-white transition-colors" onClick={() => setOpen(false)}>{t("nav_rent")}</Link>
+          <Link href="/projects" className="text-base text-white/80 hover:text-white transition-colors" onClick={() => setOpen(false)}>{t("nav_projects")}</Link>
 
           {/* Mobile language switcher */}
-          <div className="flex items-center gap-2 pt-1 border-t border-[var(--clr-border)]">
+          <div className="flex items-center gap-2 pt-1 border-t border-white/20">
             <GlobeIcon />
-            <span className="text-sm text-[var(--clr-text-secondary)] mr-1">{t("nav_language")}:</span>
+            <span className="text-sm text-white/60 mr-1">{t("nav_language")}:</span>
             {LANGUAGES.map((l) => (
               <button
                 key={l.code}
                 onClick={() => { setLang(l.code); setOpen(false); }}
                 className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-colors ${
                   lang === l.code
-                    ? "bg-[var(--clr-primary)] text-white"
-                    : "border border-[var(--clr-border)] text-[var(--clr-text-secondary)] hover:bg-[var(--clr-surface)]"
+                    ? "bg-white/20 text-white"
+                    : "border border-white/30 text-white/60 hover:bg-white/10"
                 }`}
               >
                 {l.code.toUpperCase()}
@@ -150,7 +163,7 @@ export default function Navbar() {
 
           <Link
             href="/contacts"
-            className="mt-1 text-center px-4 py-2 rounded-full border border-[var(--clr-primary)] text-[14px] font-medium text-[var(--clr-primary)] hover:bg-[var(--clr-primary)] hover:text-white transition-colors"
+            className="mt-1 text-center px-4 py-2 rounded-full border border-white/40 text-[14px] font-medium text-white hover:bg-white/20 transition-colors"
             onClick={() => setOpen(false)}
           >
             {t("nav_contacts")}

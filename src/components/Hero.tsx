@@ -63,14 +63,16 @@ export default function Hero({ properties = [] }: HeroProps) {
       {/* Content */}
       <div className="relative z-10 h-full max-w-[1600px] mx-auto px-8 md:px-12 flex flex-col justify-end pb-14 md:pb-20">
 
-        {/* Headline */}
-        <div className="max-w-3xl mb-10">
-          <h1 className="font-black text-white leading-tight tracking-tight text-[clamp(36px,5vw,76px)] mb-5">
-            {slides[activeIdx].title}
-          </h1>
-          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-lg">
-            Explore the finest villas, apartments and commercial properties in North Cyprus.
-          </p>
+        {/* Headline with glass card */}
+        <div className="mb-10">
+          <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-6 md:p-8 inline-block max-w-2xl">
+            <h1 className="font-black text-white leading-tight tracking-tight text-[clamp(30px,4.5vw,68px)] mb-4">
+              {slides[activeIdx].title}
+            </h1>
+            <p className="text-white/70 text-base leading-relaxed max-w-lg">
+              Explore the finest villas, apartments and commercial properties in North Cyprus.
+            </p>
+          </div>
         </div>
 
         {/* Bottom row */}

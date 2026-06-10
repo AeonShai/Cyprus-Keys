@@ -18,8 +18,10 @@ export default async function Home() {
   return (
     <main>
 
-      {/* Hero: full-width, full-screen */}
-      <Hero properties={properties} />
+      {/* Hero: pulls up behind fixed navbar */}
+      <div className="-mt-24">
+        <Hero properties={properties} />
+      </div>
 
 {/* Section 3: Featured off-plan projects */}
       <FeaturedProjects />
