@@ -30,8 +30,8 @@ export default function Hero({ properties = [] }: HeroProps) {
   const { t } = useLang();
 
   const slides = properties.length > 0
-    ? properties.map((p) => ({ title: p.title, photo: p.photo }))
-    : FALLBACK_SLIDES;
+    ? properties.map((p) => ({ id: p.id, title: p.title, photo: p.photo }))
+    : FALLBACK_SLIDES.map((s) => ({ ...s, id: null }));
 
   // Auto-advance every 5 seconds
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function Hero({ properties = [] }: HeroProps) {
 
           {/* CTA button */}
           <Link
-            href="/properties"
+            href={slides[activeIdx].id ? `/properties/${slides[activeIdx].id}` : "/properties"}
             className="inline-flex items-center gap-2.5 bg-white/15 backdrop-blur-sm border border-white/40 text-white font-semibold text-sm px-6 py-3 rounded-full hover:bg-white/25 transition-colors"
           >
             {t("hero_cta_btn")}
