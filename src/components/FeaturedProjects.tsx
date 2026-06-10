@@ -50,8 +50,17 @@ export default function FeaturedProjects() {
           </a>
         </Anim>
 
-        {/* Right: 3-image bento — two stacked left + one tall right */}
-        <Anim variant="right" delay={100} className="flex-1 w-full flex gap-3" style={{ height: "480px" }}>
+        {/* Mobile: 2-col aspect-ratio grid */}
+        <div className="lg:hidden w-full grid grid-cols-2 gap-3">
+          {PROJECTS.map((p) => (
+            <div key={p.id} className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image src={p.photo} alt={p.name} fill unoptimized className="object-cover" />
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: 3-image bento — two stacked left + one tall right */}
+        <Anim variant="right" delay={100} className="hidden lg:flex flex-1 w-full gap-3" style={{ height: "480px" }}>
 
           {/* Two stacked left */}
           <div className="flex-1 flex flex-col gap-3">

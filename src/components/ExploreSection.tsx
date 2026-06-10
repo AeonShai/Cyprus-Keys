@@ -43,8 +43,30 @@ export default function ExploreSection({ properties }: { properties: Property[] 
         </p>
       </Anim>
 
-      {/* Bento grid — each card animates individually */}
-      <div className="flex gap-4" style={{ height: "580px" }}>
+      {/* Mobile: 2-col aspect-ratio grid */}
+      <div className="lg:hidden grid grid-cols-2 gap-3 mb-8">
+        {[p1, p2, p3, p4].filter(Boolean).map((p) => p && (
+          <Anim key={p.id} variant="up" delay={0} className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+            <Link href={`/properties/${p.id}`} className="group absolute inset-0">
+              <Image
+                src={p.photo || "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80"}
+                alt={p.title}
+                fill
+                unoptimized
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              <div className="absolute bottom-0 inset-x-0 px-3 py-3">
+                <h3 className="font-bold text-white text-xs leading-tight line-clamp-1">{p.title}</h3>
+                <span className="text-white/70 text-[10px]">{formatPrice(p.priceAmount, p.currency, p.status)}</span>
+              </div>
+            </Link>
+          </Anim>
+        ))}
+      </div>
+
+      {/* Desktop: Bento grid — each card animates individually */}
+      <div className="hidden lg:flex gap-4" style={{ height: "580px" }}>
 
         {/* Card 1 — tall left */}
         {p1 && (
