@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useLang } from "@/hooks/useLang";
+import Anim from "@/components/Anim";
 
 const PROJECTS = [
   {
@@ -31,7 +32,7 @@ export default function FeaturedProjects() {
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
         {/* Left: text block */}
-        <div className="lg:w-[38%] shrink-0">
+        <Anim variant="left" className="lg:w-[38%] shrink-0">
           <h2 className="text-3xl md:text-4xl font-black text-[var(--clr-text)] leading-tight mb-5">
             {t("projects_title")}
           </h2>
@@ -47,10 +48,10 @@ export default function FeaturedProjects() {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-        </div>
+        </Anim>
 
         {/* Right: 3-image bento — two stacked left + one tall right */}
-        <div className="flex-1 w-full flex gap-3" style={{ height: "480px" }}>
+        <Anim variant="right" delay={100} className="flex-1 w-full flex gap-3" style={{ height: "480px" }}>
 
           {/* Two stacked left */}
           <div className="flex-1 flex flex-col gap-3">
@@ -85,7 +86,7 @@ export default function FeaturedProjects() {
             />
           </div>
 
-        </div>
+        </Anim>
       </div>
     </section>
   );

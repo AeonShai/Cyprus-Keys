@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import Anim from "@/components/Anim";
 
 export default function LeadCTA() {
   return (
     <section className="w-full py-20 px-8 md:px-12">
-      <div className="max-w-[1600px] mx-auto text-center">
+      <Anim variant="scale" className="max-w-[1600px] mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-black text-[var(--clr-text)] leading-tight mb-8">
           You&apos;ve got questions and we can&apos;t<br />wait to answer them.
         </h2>
@@ -16,7 +19,7 @@ export default function LeadCTA() {
             <path d="M7 17L17 7M17 7H7M17 7v10" />
           </svg>
         </Link>
-      </div>
+      </Anim>
     </section>
   );
 }

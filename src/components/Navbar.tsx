@@ -53,7 +53,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
+    <header className="navbar-anim absolute top-0 left-0 right-0 z-50 bg-transparent">
       <nav className="max-w-[1600px] mx-auto px-6 md:px-10 py-2 flex items-center justify-between">
 
         {/* Logo */}

@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useLang } from "@/hooks/useLang";
+import Anim from "@/components/Anim";
 
 const SERVICES = [
   {
@@ -89,7 +90,7 @@ export default function ServicesSection() {
       <div className="max-w-[1600px] mx-auto px-8 md:px-12">
 
         {/* Header */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-12">
+        <Anim className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-12">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2.5 h-2.5 rounded-full bg-[var(--clr-text)] flex-shrink-0" />
@@ -108,16 +109,16 @@ export default function ServicesSection() {
             </svg>
             {t("services_cta")}
           </a>
-        </div>
+        </Anim>
 
         {/* Services grid — no cards, just icon + title + description */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
-          {SERVICES.map((s) => (
-            <div key={s.title}>
+          {SERVICES.map((s, i) => (
+            <Anim key={s.title} delay={i * 80}>
               <div className="text-[var(--clr-text)] mb-3">{s.icon}</div>
               <h3 className="font-bold text-[var(--clr-text)] text-base mb-3 leading-snug">{s.title}</h3>
               <p className="text-[var(--clr-text-secondary)] text-sm leading-relaxed">{s.description}</p>
-            </div>
+            </Anim>
           ))}
         </div>
 

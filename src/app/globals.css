@@ -95,3 +95,84 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Animations
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes ck-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes ck-fade-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+@keyframes ck-fade-left {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+@keyframes ck-fade-right {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+@keyframes ck-scale-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+@keyframes ck-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Scroll-triggered: elements start hidden, JS adds .in-view */
+.ck-anim {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.ck-anim.in-view {
+  opacity: 1;
+  transform: none;
+}
+.ck-anim-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.ck-anim-left.in-view { opacity: 1; transform: none; }
+
+.ck-anim-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.ck-anim-right.in-view { opacity: 1; transform: none; }
+
+.ck-anim-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+              transform 0.55s cubic-bezier(0.22,1,0.36,1);
+}
+.ck-anim-scale.in-view { opacity: 1; transform: none; }
+
+/* Hero / above-fold: CSS-only animations */
+.hero-title {
+  animation: ck-fade-up 0.8s cubic-bezier(0.22,1,0.36,1) 0.1s both;
+}
+.hero-subtitle {
+  animation: ck-fade-up 0.8s cubic-bezier(0.22,1,0.36,1) 0.3s both;
+}
+.hero-cta {
+  animation: ck-fade-up 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s both;
+}
+.hero-dots {
+  animation: ck-fade-in 1s ease 0.8s both;
+}
+.navbar-anim {
+  animation: ck-fade-down 0.6s cubic-bezier(0.22,1,0.36,1) both;
+}

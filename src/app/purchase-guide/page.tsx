@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Anim from "@/components/Anim";
 
 export const metadata = {
   title: "Purchase Guide – Cyprus Keys",
@@ -146,8 +147,9 @@ export default function PurchaseGuidePage() {
           </div>
 
           <div className="space-y-4">
-            {STEPS.map((step) => (
-              <div key={step.number} className={`border rounded-2xl p-6 md:p-8 ${step.color}`}>
+            {STEPS.map((step, i) => (
+              <Anim key={step.number} delay={i * 80}>
+              <div className={`border rounded-2xl p-6 md:p-8 ${step.color}`}>
                 <div className="flex items-start gap-5">
                   <div className={`shrink-0 text-2xl font-black ${step.accent} opacity-40 leading-none pt-0.5`}>{step.number}</div>
                   <div className="flex-1">
@@ -165,6 +167,7 @@ export default function PurchaseGuidePage() {
                   </div>
                 </div>
               </div>
+              </Anim>
             ))}
           </div>
         </div>
@@ -177,8 +180,9 @@ export default function PurchaseGuidePage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            {TAX_SECTIONS.map((section) => (
-              <div key={section.title} className="border border-[var(--clr-border)] rounded-2xl overflow-hidden bg-white">
+            {TAX_SECTIONS.map((section, i) => (
+              <Anim key={section.title} delay={i * 100}>
+              <div className="border border-[var(--clr-border)] rounded-2xl overflow-hidden bg-white">
                 <div className="px-6 py-4 border-b border-[var(--clr-border)] flex items-center justify-between gap-3">
                   <h3 className="font-bold text-[var(--clr-text)] text-base">{section.title}</h3>
                   <span className={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full ${section.badgeColor}`}>{section.badge}</span>
@@ -197,10 +201,9 @@ export default function PurchaseGuidePage() {
                   ))}
                 </div>
               </div>
+              </Anim>
             ))}
           </div>
-
-          {/* Annual Taxes */}
           <div className="border border-[var(--clr-border)] rounded-2xl overflow-hidden bg-white">
             <div className="px-6 py-4 border-b border-[var(--clr-border)]">
               <h3 className="font-bold text-[var(--clr-text)] text-base">Annual Taxes</h3>
@@ -223,6 +226,7 @@ export default function PurchaseGuidePage() {
         </div>
 
         {/* CTA */}
+        <Anim variant="scale">
         <div className="bg-[#0B1F3A] rounded-3xl px-8 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h3 className="text-xl md:text-2xl font-black text-white mb-2">Ready to start your property journey?</h3>
@@ -246,6 +250,7 @@ export default function PurchaseGuidePage() {
             </Link>
           </div>
         </div>
+        </Anim>
 
       </div>
     </main>

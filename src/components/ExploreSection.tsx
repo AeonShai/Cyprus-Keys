@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLang } from "@/hooks/useLang";
+import Anim from "@/components/Anim";
 
 type Property = {
   id: number;
@@ -33,17 +34,17 @@ export default function ExploreSection({ properties }: { properties: Property[] 
     <section className="w-full max-w-[1600px] mx-auto px-8 md:px-12 py-16">
 
       {/* Header */}
-      <div className="text-center mb-10">
+      <Anim className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-black text-[var(--clr-text)] mb-3">
           {t("explore_title")}
         </h2>
         <p className="text-[var(--clr-text-secondary)] text-sm md:text-base max-w-xl mx-auto leading-relaxed">
           {t("explore_desc")}
         </p>
-      </div>
+      </Anim>
 
       {/* Bento grid — flexbox with explicit heights so Next.js fill images work */}
-      <div className="flex gap-4" style={{ height: "580px" }}>
+      <Anim delay={150} className="flex gap-4" style={{ height: "580px" }}>
 
         {/* Card 1 — tall left */}
         {p1 && (
@@ -143,10 +144,10 @@ export default function ExploreSection({ properties }: { properties: Property[] 
           )}
 
         </div>
-      </div>
+      </Anim>
 
       {/* See All button */}
-      <div className="flex justify-center mt-8">
+      <Anim delay={300} className="flex justify-center mt-8">
         <Link
           href="/properties"
           className="inline-flex items-center gap-2 bg-[var(--clr-primary)] hover:bg-[var(--clr-primary-hover)] text-white font-semibold text-sm px-7 py-3 rounded-full transition-colors"
@@ -156,7 +157,7 @@ export default function ExploreSection({ properties }: { properties: Property[] 
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </Link>
-      </div>
+      </Anim>
 
     </section>
   );

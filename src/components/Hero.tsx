@@ -64,19 +64,19 @@ export default function Hero({ properties = [] }: HeroProps) {
       <div className="relative z-10 h-full max-w-[1600px] mx-auto px-8 md:px-12 flex flex-col justify-end pb-14 md:pb-20">
 
         {/* Headline with glass card */}
-        <div className="mb-10">
+        <div className="mb-10 hero-title">
           <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-6 md:p-8 inline-block max-w-2xl">
             <h1 className="font-black text-white leading-tight tracking-tight text-[clamp(30px,4.5vw,68px)] mb-4">
               {slides[activeIdx].title}
             </h1>
-            <p className="text-white/70 text-base leading-relaxed max-w-lg">
+            <p className="text-white/70 text-base leading-relaxed max-w-lg hero-subtitle">
               Explore the finest villas, apartments and commercial properties in North Cyprus.
             </p>
           </div>
         </div>
 
         {/* Bottom row */}
-        <div className="flex items-end justify-between gap-4 flex-wrap">
+        <div className="flex items-end justify-between gap-4 flex-wrap hero-cta">
 
           {/* CTA button */}
           <Link
@@ -90,7 +90,7 @@ export default function Hero({ properties = [] }: HeroProps) {
           </Link>
 
           {/* Slide indicator dots */}
-          <div className="flex gap-1.5">
+          <div className="flex gap-1.5 hero-dots">
               {slides.map((_, i) => (
                 <button
                   key={i}
