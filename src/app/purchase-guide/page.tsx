@@ -99,7 +99,6 @@ export default function PurchaseGuidePage() {
               })}
             </div>
           </div>
-          </div>
         </div>
 
         {/* Tax Tables */}
