@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import ExploreSection from "@/components/ExploreSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import ServicesSection from "@/components/ServicesSection";
+import LeadCTA from "@/components/LeadCTA";
 import db from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -22,14 +23,21 @@ export default async function Home() {
         <Hero properties={properties} />
       </div>
 
-{/* Section 3: Featured off-plan projects */}
+      {/* Section: Featured off-plan projects */}
       <FeaturedProjects />
 
-      {/* Section 4: Explore more houses */}
-      <ExploreSection />
+      {/* Section: Explore featured homes */}
+      <div className="mt-8">
+        <ExploreSection />
+      </div>
 
-      {/* Section 5: Services / Value proposition */}
-      <ServicesSection />
+      {/* Section: Services / Value proposition */}
+      <div className="mt-8">
+        <ServicesSection />
+      </div>
+
+      {/* CTA above footer */}
+      <LeadCTA />
 
     </main>
   );
