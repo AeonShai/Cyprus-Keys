@@ -1,4 +1,7 @@
-﻿import Image from "next/image";
+﻿"use client";
+
+import Image from "next/image";
+import { useLang } from "@/hooks/useLang";
 
 const PROJECTS = [
   {
@@ -37,20 +40,21 @@ const PROJECTS = [
 ];
 
 export default function FeaturedProjects() {
+  const { t } = useLang();
   return (
     <section className="w-full max-w-[1275px] mx-auto px-6 py-14">
 
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">
         <div>
-          <p className="text-xs font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-2">New Developments</p>
-          <h2 className="text-2xl md:text-4xl font-black text-[var(--clr-text)]">Featured Projects</h2>
+          <p className="text-xs font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-2">{t("featured_badge")}</p>
+          <h2 className="text-2xl md:text-4xl font-black text-[var(--clr-text)]">{t("featured_title")}</h2>
         </div>
         <a
           href="/projects"
           className="flex items-center gap-2 text-sm font-semibold text-white bg-[var(--clr-primary)] hover:bg-[var(--clr-primary-hover)] transition-colors px-5 py-2 rounded-full"
         >
-          All Projects
+          {t("featured_all")}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>

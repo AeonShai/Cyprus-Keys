@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLang } from "@/hooks/useLang";
 
 type Tab = "satilik" | "kiralik";
 
@@ -40,10 +41,7 @@ function ChevronIcon() {
   );
 }
 
-const TABS: { id: Tab; label: string; Icon: () => React.JSX.Element }[] = [
-  { id: "satilik", label: "For Sale", Icon: KeyIcon },
-  { id: "kiralik", label: "For Rent", Icon: HomeIcon },
-];
+const TABS: { id: Tab; saleKey: "search_tab_sale"; rentKey?: undefined } | { id: Tab; rentKey: "search_tab_rent"; saleKey?: undefined }[] = [];
 
 const CYPRUS_REGIONS = [
   "Girne", "Lefkosa", "Gazimagusa", "Iskele", "Guzelyurt",
@@ -54,11 +52,17 @@ const PROPERTY_TYPES = ["Apartment", "Villa", "Penthouse", "Land", "Commercial"]
 
 export default function HeroSearch() {
   const router = useRouter();
+  const { t } = useLang();
   const [activeTab, setActiveTab] = useState<Tab>("satilik");
   const [region, setRegion] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+
+  const TABS = [
+    { id: "satilik" as Tab, label: t("search_tab_sale"), Icon: KeyIcon },
+    { id: "kiralik" as Tab, label: t("search_tab_rent"), Icon: HomeIcon },
+  ];
 
   function handleSearch() {
     const params = new URLSearchParams();
@@ -101,68 +105,68 @@ export default function HeroSearch() {
 
           {/* Region */}
           <div className="flex-1 border border-[var(--clr-border)] rounded-[8px] px-4 py-3 flex flex-col justify-center min-w-0">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Region / City</p>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">{t("search_region_label")}</p>
             <div className="relative flex items-center">
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value)}
                 className="w-full font-bold text-[var(--clr-primary)] text-sm bg-transparent outline-none cursor-pointer appearance-none pr-4"
               >
-                <option value="">All Regions</option>
+                <option value="">{t("search_region_placeholder")}</option>
                 {CYPRUS_REGIONS.map((r) => (
                   <option key={r} value={r}>{r}</option>
                 ))}
               </select>
               <span className="absolute right-0 text-gray-400 pointer-events-none"><ChevronIcon /></span>
             </div>
-            <p className="text-[11px] text-gray-400 mt-0.5">Cyprus</p>
+            <p className="text-[11px] text-gray-400 mt-0.5">{t("search_region_sub")}</p>
           </div>
 
           {/* Property type */}
           <div className="flex-1 border border-[var(--clr-border)] rounded-[8px] px-4 py-3 flex flex-col justify-center min-w-0">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Property Type</p>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">{t("search_type_label")}</p>
             <div className="relative flex items-center">
               <select
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
                 className="w-full font-bold text-[var(--clr-primary)] text-sm bg-transparent outline-none cursor-pointer appearance-none pr-4"
               >
-                <option value="">All Types</option>
-                {PROPERTY_TYPES.map((t) => (
-                  <option key={t} value={t}>{t}</option>
+                <option value="">{t("search_type_placeholder")}</option>
+                {PROPERTY_TYPES.map((pt) => (
+                  <option key={pt} value={pt}>{pt}</option>
                 ))}
               </select>
               <span className="absolute right-0 text-gray-400 pointer-events-none"><ChevronIcon /></span>
             </div>
-            <p className="text-[11px] text-gray-400 mt-0.5">Apartment, Villa, Land...</p>
+            <p className="text-[11px] text-gray-400 mt-0.5">{t("search_type_sub")}</p>
           </div>
 
           {/* Price range — min + divider + max in one box */}
           <div className="flex-[2] border border-[var(--clr-border)] rounded-[8px] px-4 py-3 flex items-center justify-around min-w-0 gap-3">
             <div className="flex flex-col justify-center flex-1 min-w-0">
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Min. Price</p>
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">{t("search_min_label")}</p>
               <div className="flex items-center gap-1">
                 <span className="font-bold text-[var(--clr-primary)] text-sm">£</span>
                 <input
                   type="number"
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
-                  placeholder="0"
+                  placeholder={t("search_min_placeholder")}
                   className="w-full font-bold text-[var(--clr-primary)] text-sm bg-transparent outline-none placeholder:text-gray-300 placeholder:font-normal"
                 />
               </div>
-              <p className="text-[11px] text-gray-400 mt-0.5">Sterling (GBP)</p>
+              <p className="text-[11px] text-gray-400 mt-0.5">{t("search_price_sub")}</p>
             </div>
             <div className="w-px h-8 bg-[var(--clr-border)] shrink-0" />
             <div className="flex flex-col justify-center flex-1 min-w-0">
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Max. Price</p>
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">{t("search_max_label")}</p>
               <div className="flex items-center gap-1">
                 <span className="font-bold text-[var(--clr-primary)] text-sm">£</span>
                 <input
                   type="number"
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
-                  placeholder="No limit"
+                  placeholder={t("search_max_placeholder")}
                   className="w-full font-bold text-[var(--clr-primary)] text-sm bg-transparent outline-none placeholder:text-gray-300 placeholder:font-normal"
                 />
               </div>
@@ -177,7 +181,7 @@ export default function HeroSearch() {
           onClick={handleSearch}
           className="absolute right-4 md:right-[4%] -bottom-5 h-10 px-6 bg-[var(--clr-primary)] text-white font-semibold text-sm flex items-center justify-center rounded-[6px] hover:bg-[#0D3061] transition-colors whitespace-nowrap"
         >
-          Search
+          {t("search_button")}
         </button>
       </div>
     </div>

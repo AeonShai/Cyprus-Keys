@@ -58,6 +58,16 @@ const translations = {
     footer_rights: "© 2025 Cyprus Keys. All rights reserved.",
     footer_terms: "Terms of Service",
     footer_privacy: "Privacy Policy",
+
+    // LeadCTA
+    lead_cta_badge: "Free Consultation",
+    lead_cta_description: "Leave your details and one of our advisors will contact you within 24 hours. No commitment, no pressure — just expert advice tailored to your goals.",
+    lead_cta_form_name: "Full Name",
+    lead_cta_form_email: "Email Address",
+    lead_cta_form_phone: "Phone Number",
+    lead_cta_form_submit: "Request Free Consultation",
+    lead_cta_success: "Thank you!",
+    lead_cta_success_sub: "We'll be in touch within 24 hours.",
   },
   tr: {
     nav_buy: "Satın Al",
@@ -111,6 +121,16 @@ const translations = {
     footer_rights: "© 2025 Cyprus Keys. Tüm hakları saklıdır.",
     footer_terms: "Kullanım Koşulları",
     footer_privacy: "Gizlilik Politikası",
+
+    // LeadCTA
+    lead_cta_badge: "Ücretsiz Danışmanlık",
+    lead_cta_description: "Bilgilerinizi bırakın, danışmanlarımızdan biri 24 saat içinde sizi arasın. Taahhüt yok, baskı yok — sadece hedeflerinize özel uzman tavsiyesi.",
+    lead_cta_form_name: "Ad Soyad",
+    lead_cta_form_email: "E-posta Adresi",
+    lead_cta_form_phone: "Telefon Numarası",
+    lead_cta_form_submit: "Ücretsiz Danışmanlık İste",
+    lead_cta_success: "Teşekkürler!",
+    lead_cta_success_sub: "24 saat içinde sizinle iletişime geçeceğiz.",
   },
   ru: {
     nav_buy: "Купить",
@@ -164,6 +184,16 @@ const translations = {
     footer_rights: "© 2025 Cyprus Keys. Все права защищены.",
     footer_terms: "Условия использования",
     footer_privacy: "Политика конфиденциальности",
+
+    // LeadCTA
+    lead_cta_badge: "Бесплатная консультация",
+    lead_cta_description: "Оставьте свои данные, и один из наших консультантов свяжется с вами в течение 24 часов. Никаких обязательств — только экспертный совет под ваши цели.",
+    lead_cta_form_name: "Полное имя",
+    lead_cta_form_email: "Адрес эл. почты",
+    lead_cta_form_phone: "Номер телефона",
+    lead_cta_form_submit: "Запросить консультацию",
+    lead_cta_success: "Спасибо!",
+    lead_cta_success_sub: "Мы свяжемся с вами в течение 24 часов.",
   },
 } as const;
 

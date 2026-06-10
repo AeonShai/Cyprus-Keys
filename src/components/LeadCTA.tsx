@@ -1,10 +1,12 @@
 ﻿"use client";
 
 import { useState } from "react";
+import { useLang } from "@/hooks/useLang";
 
 export default function LeadCTA() {
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [submitted, setSubmitted] = useState(false);
+  const { t } = useLang();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -19,12 +21,12 @@ export default function LeadCTA() {
 
           {/* Left: copy */}
           <div>
-            <p className="text-xs font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-3">Free Consultation</p>
+            <p className="text-xs font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-3">{t("lead_cta_badge")}</p>
             <h2 className="text-2xl md:text-4xl font-black text-white leading-tight">
-              Find your ideal<br />property in Cyprus
+              {t("lead_cta_title")}
             </h2>
             <p className="text-white/60 mt-4 text-sm leading-relaxed max-w-md">
-              Leave your details and one of our advisors will contact you within 24 hours. No commitment, no pressure — just expert advice tailored to your goals.
+              {t("lead_cta_description")}
             </p>
             <ul className="mt-6 space-y-2">
               {[
@@ -50,13 +52,13 @@ export default function LeadCTA() {
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
-                <h3 className="text-white font-bold text-xl">Thank you!</h3>
-                <p className="text-white/60 text-sm mt-2">We&apos;ll be in touch within 24 hours.</p>
+                <h3 className="text-white font-bold text-xl">{t("lead_cta_success")}</h3>
+                <p className="text-white/60 text-sm mt-2">{t("lead_cta_success_sub")}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-white/60 text-xs font-semibold mb-1.5 uppercase tracking-wide">Full Name</label>
+                  <label className="block text-white/60 text-xs font-semibold mb-1.5 uppercase tracking-wide">{t("lead_cta_form_name")}</label>
                   <input
                     type="text"
                     required
@@ -67,7 +69,7 @@ export default function LeadCTA() {
                   />
                 </div>
                 <div>
-                  <label className="block text-white/60 text-xs font-semibold mb-1.5 uppercase tracking-wide">Email Address</label>
+                  <label className="block text-white/60 text-xs font-semibold mb-1.5 uppercase tracking-wide">{t("lead_cta_form_email")}</label>
                   <input
                     type="email"
                     required
@@ -78,7 +80,7 @@ export default function LeadCTA() {
                   />
                 </div>
                 <div>
-                  <label className="block text-white/60 text-xs font-semibold mb-1.5 uppercase tracking-wide">Phone Number</label>
+                  <label className="block text-white/60 text-xs font-semibold mb-1.5 uppercase tracking-wide">{t("lead_cta_form_phone")}</label>
                   <input
                     type="tel"
                     placeholder="+44 7700 000000"
@@ -91,7 +93,7 @@ export default function LeadCTA() {
                   type="submit"
                   className="w-full bg-[var(--clr-accent)] hover:bg-[#c4976d] text-white font-semibold py-3.5 rounded-xl transition-colors text-sm mt-2"
                 >
-                  Request Free Consultation
+                  {t("lead_cta_form_submit")}
                 </button>
               </form>
             )}

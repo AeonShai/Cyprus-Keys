@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useState, useEffect } from "react";
 import { NORTH_CYPRUS_CITIES } from "@/constants/locations";
+import { useLang } from "@/hooks/useLang";
 
 const CITIES = ["All", ...NORTH_CYPRUS_CITIES];
 const TYPES = ["All", "villa", "apartment", "penthouse", "bungalow"];
@@ -11,6 +12,7 @@ export default function FilterSidebar() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLang();
 
   const status = searchParams.get("status") ?? "all";
   const city = searchParams.get("city") ?? "All";
@@ -57,7 +59,7 @@ export default function FilterSidebar() {
 
       {/* Status */}
       <div className="mb-5">
-        <p className="text-xs font-semibold text-[var(--clr-text-secondary)] tracking-widest uppercase mb-3">Listing Type</p>
+        <p className="text-xs font-semibold text-[var(--clr-text-secondary)] tracking-widest uppercase mb-3">{t("filter_listing_type")}</p>
         <div className="flex gap-2">
           {["all", "sale", "rent"].map((s) => (
             <button
@@ -69,7 +71,7 @@ export default function FilterSidebar() {
                   : "bg-[var(--clr-surface)] text-[var(--clr-text-secondary)] hover:bg-[var(--clr-border)]"
               }`}
             >
-              {s === "all" ? "All" : s === "sale" ? "For Sale" : "For Rent"}
+                {s === "all" ? t("filter_all") : s === "sale" ? t("filter_sale") : t("filter_rent")}
             </button>
           ))}
         </div>
@@ -77,33 +79,33 @@ export default function FilterSidebar() {
 
       {/* City — select dropdown */}
       <div className="mb-5">
-        <p className="text-xs font-semibold text-[var(--clr-text-secondary)] tracking-widest uppercase mb-3">City</p>
+        <p className="text-xs font-semibold text-[var(--clr-text-secondary)] tracking-widest uppercase mb-3">{t("filter_city")}</p>
         <select
           value={city}
           onChange={(e) => update("city", e.target.value)}
           className="w-full border border-[var(--clr-border)] rounded-xl px-3 py-2.5 text-sm text-[var(--clr-text)] bg-[var(--clr-bg)] focus:outline-none focus:border-[var(--clr-primary)] transition-colors"
         >
           {CITIES.map((c) => (
-            <option key={c} value={c}>{c === "All" ? "All Cities" : c}</option>
+            <option key={c} value={c}>{c === "All" ? t("filter_all_cities") : c}</option>
           ))}
         </select>
       </div>
 
       {/* Type — wrap pills */}
       <div className="mb-5">
-        <p className="text-xs font-semibold text-[var(--clr-text-secondary)] tracking-widest uppercase mb-3">Property Type</p>
+        <p className="text-xs font-semibold text-[var(--clr-text-secondary)] tracking-widest uppercase mb-3">{t("filter_type")}</p>
         <div className="flex flex-wrap gap-2">
-          {TYPES.map((t) => (
+          {TYPES.map((pt) => (
             <button
-              key={t}
-              onClick={() => update("type", t)}
+              key={pt}
+              onClick={() => update("type", pt)}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold capitalize transition-colors ${
-                type === t
+                type === pt
                   ? "bg-[var(--clr-primary)] text-white"
                   : "bg-[var(--clr-surface)] text-[var(--clr-text-secondary)] hover:bg-[var(--clr-border)]"
               }`}
             >
-              {t === "All" ? "All Types" : t}
+              {pt === "All" ? t("filter_all_types") : pt}
             </button>
           ))}
         </div>
@@ -111,7 +113,7 @@ export default function FilterSidebar() {
 
       {/* Price Range — explicit Apply button */}
       <div className="mb-5">
-        <p className="text-xs font-semibold text-[var(--clr-text-secondary)] tracking-widest uppercase mb-3">Price Range (£)</p>
+        <p className="text-xs font-semibold text-[var(--clr-text-secondary)] tracking-widest uppercase mb-3">{t("filter_price")}</p>
         <div className="flex gap-2 mb-2">
           <input
             type="number"
@@ -134,7 +136,7 @@ export default function FilterSidebar() {
           onClick={applyPrice}
           className="w-full py-2 rounded-xl bg-[var(--clr-primary)] text-white text-sm font-semibold hover:bg-[#0D3061] transition-colors"
         >
-          Apply Price
+          {t("filter_apply")}
         </button>
       </div>
 

@@ -1,12 +1,15 @@
-﻿import Image from "next/image";
+﻿"use client";
+
+import Image from "next/image";
+import { useLang } from "@/hooks/useLang";
+
 import { IMAGES } from "@/constants/images";
 
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Buy", href: "/properties?status=sale" },
-  { label: "Rent", href: "/properties?status=rent" },
-  { label: "Projects", href: "/projects" },
-  { label: "Contacts", href: "/contacts" },
+const NAV_LINKS_KEYS = [
+  { key: "nav_buy" as const, href: "/properties?status=sale" },
+  { key: "nav_rent" as const, href: "/properties?status=rent" },
+  { key: "nav_projects" as const, href: "/projects" },
+  { key: "nav_contacts" as const, href: "/contacts" },
 ];
 
 const SOCIALS = [
@@ -41,6 +44,7 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+  const { t } = useLang();
   return (
     <footer className="w-full bg-[#0B1F3A]">
       <div className="max-w-[1275px] mx-auto px-6 md:px-12 pt-14 pb-8">
@@ -72,12 +76,12 @@ export default function Footer() {
 
           {/* Col 2: Navigation */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-white/40 uppercase mb-5">Navigation</p>
+            <p className="text-[10px] font-semibold tracking-[0.2em] text-white/40 uppercase mb-5">{t("footer_nav")}</p>
             <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
-                <li key={link.label}>
+              {NAV_LINKS_KEYS.map((link) => (
+                <li key={link.key}>
                   <a href={link.href} className="text-white/70 text-sm hover:text-white transition-colors">
-                    {link.label}
+                    {t(link.key)}
                   </a>
                 </li>
               ))}
@@ -86,7 +90,7 @@ export default function Footer() {
 
           {/* Col 3: Contact */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-white/40 uppercase mb-5">Contact</p>
+            <p className="text-[10px] font-semibold tracking-[0.2em] text-white/40 uppercase mb-5">{t("footer_contact")}</p>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <svg className="mt-0.5 shrink-0 text-white/40" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -106,7 +110,7 @@ export default function Footer() {
                 <svg className="mt-0.5 shrink-0 text-white/40" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
                 </svg>
-                <span className="text-white/70 text-sm">Girne (Kyrenia),<br />North Cyprus</span>
+                <span className="text-white/70 text-sm whitespace-pre-line">{t("footer_address")}</span>
               </li>
             </ul>
           </div>
@@ -115,10 +119,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/35 text-xs">© 2025 Cyprus Keys. All rights reserved.</p>
+          <p className="text-white/35 text-xs">{t("footer_rights")}</p>
           <div className="flex gap-5">
-            <a href="/terms" className="text-white/35 text-xs hover:text-white/70 transition-colors">Terms of Service</a>
-            <a href="/privacy" className="text-white/35 text-xs hover:text-white/70 transition-colors">Privacy Policy</a>
+            <a href="/terms" className="text-white/35 text-xs hover:text-white/70 transition-colors">{t("footer_terms")}</a>
+            <a href="/privacy" className="text-white/35 text-xs hover:text-white/70 transition-colors">{t("footer_privacy")}</a>
           </div>
         </div>
 
