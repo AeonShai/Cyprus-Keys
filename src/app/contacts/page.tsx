@@ -113,11 +113,11 @@ export default function ContactPage() {
             backgroundSize: "48px 48px",
           }}
         />
-        <div className="relative max-w-[1275px] mx-auto px-6 py-20 text-center">
+        <div className="relative max-w-[1275px] mx-auto px-6 pt-28 pb-16 md:py-20 text-center">
           <p className="inline-block text-[10px] font-semibold tracking-[0.25em] text-[var(--clr-accent)] uppercase border border-[var(--clr-accent)]/40 px-4 py-1.5 rounded-full mb-6">
             {t("contact_hero_badge")}
           </p>
-          <h1 className="text-5xl md:text-6xl font-black text-white leading-none mb-5">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none mb-5">
             {t("contact_hero_title1")}<br />
             <span className="text-[#D4AF37]">{t("contact_hero_title2")}</span>
           </h1>
@@ -129,7 +129,7 @@ export default function ContactPage() {
 
       {/* ── Contact cards ── */}
       <section className="max-w-[1275px] mx-auto px-6 -mt-8 relative z-10 mb-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {CONTACT_ITEMS.map((item) => (
             <div
               key={item.labelKey}
