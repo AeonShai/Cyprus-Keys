@@ -762,6 +762,7 @@ export const PropertyScalarFieldEnum = {
   floor: 'floor',
   totalFloors: 'totalFloors',
   isPublished: 'isPublished',
+  region: 'region',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

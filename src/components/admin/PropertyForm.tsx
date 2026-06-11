@@ -9,6 +9,7 @@ interface PropertyFormData {
   title: string;
   location: string;
   city: string;
+  region: string;
   type: string;
   status: string;
   priceAmount: number;
@@ -35,6 +36,7 @@ const defaultData: PropertyFormData = {
   title: "",
   location: "",
   city: "",
+  region: "cyprus",
   type: "villa",
   status: "sale",
   priceAmount: 0,
@@ -139,35 +141,65 @@ export default function PropertyForm({ initialData, mode }: PropertyFormProps) {
 
       {/* Location + City */}
       <div className="grid grid-cols-2 gap-4">
-        <Field label="City">
+        <Field label="Region">
           <select
-            required
-            value={data.city}
+            value={data.region}
             onChange={(e) => {
-              const city = e.target.value;
-              update("city", city);
-              if (!data.location || NORTH_CYPRUS_CITIES.some((c) => data.location.startsWith(c))) {
-                update("location", city ? `${city}, North Cyprus` : "");
-              }
+              update("region", e.target.value);
+              update("city", "");
+              update("location", "");
             }}
             className={inputClass}
           >
-            <option value="">Select city…</option>
-            {NORTH_CYPRUS_CITIES.map((city) => (
-              <option key={city} value={city}>{city}</option>
-            ))}
+            <option value="cyprus">🇨🇾 North Cyprus</option>
+            <option value="dubai">🇦🇪 Dubai</option>
           </select>
         </Field>
-        <Field label="Location (full address)">
-          <input
-            required
-            value={data.location}
-            onChange={(e) => update("location", e.target.value)}
-            placeholder="Girne, North Cyprus"
-            className={inputClass}
-          />
-        </Field>
+        {data.region === "dubai" ? (
+          <Field label="Area / District">
+            <input
+              required
+              value={data.city}
+              onChange={(e) => {
+                update("city", e.target.value);
+                update("location", e.target.value ? `${e.target.value}, Dubai` : "");
+              }}
+              placeholder="e.g. Dubai Marina"
+              className={inputClass}
+            />
+          </Field>
+        ) : (
+          <Field label="City">
+            <select
+              required
+              value={data.city}
+              onChange={(e) => {
+                const city = e.target.value;
+                update("city", city);
+                if (!data.location || NORTH_CYPRUS_CITIES.some((c) => data.location.startsWith(c))) {
+                  update("location", city ? `${city}, North Cyprus` : "");
+                }
+              }}
+              className={inputClass}
+            >
+              <option value="">Select city…</option>
+              {NORTH_CYPRUS_CITIES.map((city) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
+            </select>
+          </Field>
+        )}
       </div>
+
+      <Field label="Location (full address)">
+        <input
+          required
+          value={data.location}
+          onChange={(e) => update("location", e.target.value)}
+          placeholder={data.region === "dubai" ? "Dubai Marina, Dubai" : "Girne, North Cyprus"}
+          className={inputClass}
+        />
+      </Field>
 
       {/* Type + Status */}
       <div className="grid grid-cols-2 gap-4">

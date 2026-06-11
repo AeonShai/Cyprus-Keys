@@ -27,6 +27,7 @@ model Property {
   floor       Int?
   totalFloors Int?
   isPublished Boolean        @default(true)
+  region      String         @default("cyprus")
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
 }

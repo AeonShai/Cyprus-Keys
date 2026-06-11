@@ -66,6 +66,7 @@ export type PropertyMinAggregateOutputType = {
   floor: number | null
   totalFloors: number | null
   isPublished: boolean | null
+  region: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -88,6 +89,7 @@ export type PropertyMaxAggregateOutputType = {
   floor: number | null
   totalFloors: number | null
   isPublished: boolean | null
+  region: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -112,6 +114,7 @@ export type PropertyCountAggregateOutputType = {
   floor: number
   totalFloors: number
   isPublished: number
+  region: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -158,6 +161,7 @@ export type PropertyMinAggregateInputType = {
   floor?: true
   totalFloors?: true
   isPublished?: true
+  region?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -180,6 +184,7 @@ export type PropertyMaxAggregateInputType = {
   floor?: true
   totalFloors?: true
   isPublished?: true
+  region?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -204,6 +209,7 @@ export type PropertyCountAggregateInputType = {
   floor?: true
   totalFloors?: true
   isPublished?: true
+  region?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -315,6 +321,7 @@ export type PropertyGroupByOutputType = {
   floor: number | null
   totalFloors: number | null
   isPublished: boolean
+  region: string
   createdAt: Date
   updatedAt: Date
   _count: PropertyCountAggregateOutputType | null
@@ -362,6 +369,7 @@ export type PropertyWhereInput = {
   floor?: Prisma.IntNullableFilter<"Property"> | number | null
   totalFloors?: Prisma.IntNullableFilter<"Property"> | number | null
   isPublished?: Prisma.BoolFilter<"Property"> | boolean
+  region?: Prisma.StringFilter<"Property"> | string
   createdAt?: Prisma.DateTimeFilter<"Property"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Property"> | Date | string
 }
@@ -386,6 +394,7 @@ export type PropertyOrderByWithRelationInput = {
   floor?: Prisma.SortOrderInput | Prisma.SortOrder
   totalFloors?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -413,6 +422,7 @@ export type PropertyWhereUniqueInput = Prisma.AtLeast<{
   floor?: Prisma.IntNullableFilter<"Property"> | number | null
   totalFloors?: Prisma.IntNullableFilter<"Property"> | number | null
   isPublished?: Prisma.BoolFilter<"Property"> | boolean
+  region?: Prisma.StringFilter<"Property"> | string
   createdAt?: Prisma.DateTimeFilter<"Property"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Property"> | Date | string
 }, "id">
@@ -437,6 +447,7 @@ export type PropertyOrderByWithAggregationInput = {
   floor?: Prisma.SortOrderInput | Prisma.SortOrder
   totalFloors?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PropertyCountOrderByAggregateInput
@@ -469,6 +480,7 @@ export type PropertyScalarWhereWithAggregatesInput = {
   floor?: Prisma.IntNullableWithAggregatesFilter<"Property"> | number | null
   totalFloors?: Prisma.IntNullableWithAggregatesFilter<"Property"> | number | null
   isPublished?: Prisma.BoolWithAggregatesFilter<"Property"> | boolean
+  region?: Prisma.StringWithAggregatesFilter<"Property"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Property"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Property"> | Date | string
 }
@@ -492,6 +504,7 @@ export type PropertyCreateInput = {
   floor?: number | null
   totalFloors?: number | null
   isPublished?: boolean
+  region?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -516,6 +529,7 @@ export type PropertyUncheckedCreateInput = {
   floor?: number | null
   totalFloors?: number | null
   isPublished?: boolean
+  region?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -539,6 +553,7 @@ export type PropertyUpdateInput = {
   floor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   totalFloors?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  region?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -563,6 +578,7 @@ export type PropertyUncheckedUpdateInput = {
   floor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   totalFloors?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  region?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -587,6 +603,7 @@ export type PropertyCreateManyInput = {
   floor?: number | null
   totalFloors?: number | null
   isPublished?: boolean
+  region?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -610,6 +627,7 @@ export type PropertyUpdateManyMutationInput = {
   floor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   totalFloors?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  region?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -634,6 +652,7 @@ export type PropertyUncheckedUpdateManyInput = {
   floor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   totalFloors?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  region?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -666,6 +685,7 @@ export type PropertyCountOrderByAggregateInput = {
   floor?: Prisma.SortOrder
   totalFloors?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -699,6 +719,7 @@ export type PropertyMaxOrderByAggregateInput = {
   floor?: Prisma.SortOrder
   totalFloors?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -721,6 +742,7 @@ export type PropertyMinOrderByAggregateInput = {
   floor?: Prisma.SortOrder
   totalFloors?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -803,6 +825,7 @@ export type PropertySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   floor?: boolean
   totalFloors?: boolean
   isPublished?: boolean
+  region?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["property"]>
@@ -827,6 +850,7 @@ export type PropertySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   floor?: boolean
   totalFloors?: boolean
   isPublished?: boolean
+  region?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["property"]>
@@ -851,6 +875,7 @@ export type PropertySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   floor?: boolean
   totalFloors?: boolean
   isPublished?: boolean
+  region?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["property"]>
@@ -875,11 +900,12 @@ export type PropertySelectScalar = {
   floor?: boolean
   totalFloors?: boolean
   isPublished?: boolean
+  region?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PropertyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "location" | "city" | "type" | "status" | "priceAmount" | "currency" | "beds" | "baths" | "area" | "photo" | "gallery" | "description" | "features" | "yearBuilt" | "floor" | "totalFloors" | "isPublished" | "createdAt" | "updatedAt", ExtArgs["result"]["property"]>
+export type PropertyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "location" | "city" | "type" | "status" | "priceAmount" | "currency" | "beds" | "baths" | "area" | "photo" | "gallery" | "description" | "features" | "yearBuilt" | "floor" | "totalFloors" | "isPublished" | "region" | "createdAt" | "updatedAt", ExtArgs["result"]["property"]>
 
 export type $PropertyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Property"
@@ -904,6 +930,7 @@ export type $PropertyPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     floor: number | null
     totalFloors: number | null
     isPublished: boolean
+    region: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["property"]>
@@ -1348,6 +1375,7 @@ export interface PropertyFieldRefs {
   readonly floor: Prisma.FieldRef<"Property", 'Int'>
   readonly totalFloors: Prisma.FieldRef<"Property", 'Int'>
   readonly isPublished: Prisma.FieldRef<"Property", 'Boolean'>
+  readonly region: Prisma.FieldRef<"Property", 'String'>
   readonly createdAt: Prisma.FieldRef<"Property", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Property", 'DateTime'>
 }

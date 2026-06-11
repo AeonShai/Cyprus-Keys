@@ -16,6 +16,7 @@ export async function GET(request: NextRequest) {
   const properties = await db.property.findMany({
     where: {
       isPublished: true,
+      ...(searchParams.get("region") ? { region: searchParams.get("region")! } : {}),
       ...(type ? { type: type as never } : {}),
       ...(status ? { status: status as never } : {}),
       ...(city ? { city: { contains: city, mode: "insensitive" } } : {}),
