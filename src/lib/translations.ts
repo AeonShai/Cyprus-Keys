@@ -136,6 +136,16 @@ const translations = {
     lead_cta_form_submit: "Request Free Consultation",
     lead_cta_success: "Thank you!",
     lead_cta_success_sub: "We'll be in touch within 24 hours.",
+
+    // Property detail page
+    prop_details_title: "Property Details",
+    prop_purchase_price: "Purchase price",
+    prop_monthly_rent: "Monthly rent",
+    prop_beds: "Beds",
+    prop_baths: "Baths",
+    prop_contact_agent: "Contact Agent",
+    prop_breadcrumb_home: "Home",
+    prop_breadcrumb_properties: "Properties",
   },
   tr: {
     nav_buy: "Satın Al",
@@ -267,6 +277,16 @@ const translations = {
     lead_cta_form_submit: "Ücretsiz Danışmanlık İste",
     lead_cta_success: "Teşekkürler!",
     lead_cta_success_sub: "24 saat içinde sizinle iletişime geçeceğiz.",
+
+    // Property detail page
+    prop_details_title: "İlan Detayları",
+    prop_purchase_price: "Satış fiyatı",
+    prop_monthly_rent: "Aylık kira",
+    prop_beds: "Yatak",
+    prop_baths: "Banyo",
+    prop_contact_agent: "Ajan ile İletişim",
+    prop_breadcrumb_home: "Ana Sayfa",
+    prop_breadcrumb_properties: "İlanlar",
   },
   ru: {
     nav_buy: "Купить",
@@ -398,6 +418,16 @@ const translations = {
     lead_cta_form_submit: "Запросить консультацию",
     lead_cta_success: "Спасибо!",
     lead_cta_success_sub: "Мы свяжемся с вами в течение 24 часов.",
+
+    // Property detail page
+    prop_details_title: "Детали объекта",
+    prop_purchase_price: "Цена продажи",
+    prop_monthly_rent: "Ежемесячная аренда",
+    prop_beds: "Спальни",
+    prop_baths: "Ванные",
+    prop_contact_agent: "Связаться с агентом",
+    prop_breadcrumb_home: "Главная",
+    prop_breadcrumb_properties: "Объекты",
   },
 } as const;
 
