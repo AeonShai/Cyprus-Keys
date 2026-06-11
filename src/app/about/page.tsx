@@ -10,12 +10,6 @@ const STATS = [
 
 const TEAM = [
   {
-    name: "Selcuk Kesper",
-    role: "Founder & CEO",
-    photo: "/founder.png",
-    bio: "With over 12 years in North Cyprus real estate, Selcuk has guided hundreds of international investors through successful property acquisitions.",
-  },
-  {
     name: "Elena Petrou",
     role: "Senior Sales Consultant",
     photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80",
@@ -93,7 +87,7 @@ export default function AboutPage() {
                 Built on Trust, Driven by Results
               </h2>
               <p className="text-[var(--clr-text-secondary)] leading-relaxed mb-4">
-                Founded in 2012 by Selcuk Kesper, Cyprus Keys began as a boutique agency helping Turkish and British expatriates navigate the North Cyprus property market. Over a decade later, we serve clients from over 30 countries.
+                Cyprus Keys began as a boutique agency helping Turkish and British expatriates navigate the North Cyprus property market. Over a decade later, we serve clients from over 30 countries.
               </p>
               <p className="text-[var(--clr-text-secondary)] leading-relaxed">
                 Our team of licensed real estate professionals, lawyers, and investment analysts work together to ensure every transaction is secure, transparent and aligned with your goals — whether you are buying a holiday home, relocating, or building an investment portfolio.

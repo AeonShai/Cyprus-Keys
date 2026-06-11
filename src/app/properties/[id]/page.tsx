@@ -112,19 +112,6 @@ export default async function PropertyDetailPage({ params }: PropertyDetailPageP
                 </svg>
                 WhatsApp
               </a>
-
-              <div className="mt-6 pt-6 border-t border-[var(--clr-border)]">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-[var(--clr-border)]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/founder.png" alt="Selcuk Kesper" className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-[var(--clr-text-secondary)]">Your Agent</p>
-                    <p className="font-bold text-[var(--clr-text)] text-sm">Selcuk Kesper</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
