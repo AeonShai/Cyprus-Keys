@@ -1,7 +1,12 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
+export default async function AdminLayout({ children }: { children: ReactNode }) {
+  const session = await getServerSession(authOptions);
+  if (!session) redirect("/admin/login");
   return (
     <div className="min-h-screen flex bg-[var(--clr-surface)]">
       {/* Sidebar */}
