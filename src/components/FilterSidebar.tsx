@@ -150,7 +150,7 @@ export default function FilterSidebar() {
   );
 
   return (
-    <aside className="w-full lg:w-64 flex-shrink-0 page-slide-left">
+    <aside className="w-full lg:w-64 flex-shrink-0">
 
       {/* Mobile: collapsible toggle */}
       <div className="lg:hidden mb-3">

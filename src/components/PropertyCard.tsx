@@ -41,8 +41,7 @@ export default function PropertyCard({ property, index = 0 }: PropertyCardProps)
   return (
     <Link
       href={`/properties/${property.id}`}
-      className="group block bg-[var(--clr-bg)] rounded-2xl overflow-hidden shadow-sm border border-[var(--clr-border)] hover:shadow-md transition-shadow page-fade-up"
-      style={{ animationDelay: `${index * 60}ms` }}
+      className="group block bg-[var(--clr-bg)] rounded-2xl overflow-hidden shadow-sm border border-[var(--clr-border)] hover:shadow-md transition-shadow"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
