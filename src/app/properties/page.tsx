@@ -1,7 +1,7 @@
 ﻿import { Suspense } from "react";
 import Link from "next/link";
 import FilterSidebar from "@/components/FilterSidebar";
-import PropertyCard from "@/components/PropertyCard";
+import PropertiesGrid from "@/components/PropertiesGrid";
 import db from "@/lib/db";
 import type { PropertyModel } from "@/generated/prisma/models";
 
@@ -109,11 +109,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
                 <p className="text-[var(--clr-text-secondary)] text-sm">Try adjusting your filters.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filtered.map((property, i) => (
-                  <PropertyCard key={property.id} property={property} index={i} />
-                ))}
-              </div>
+              <PropertiesGrid properties={filtered} />
             )}
           </div>
         </div>
