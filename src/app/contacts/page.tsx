@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLang } from "@/hooks/useLang";
+import Anim from "@/components/Anim";
 
 const CONTACT_ITEMS = [
   {
@@ -114,40 +115,45 @@ export default function ContactPage() {
           }}
         />
         <div className="relative max-w-[1275px] mx-auto px-6 pt-28 pb-16 md:py-20 text-center">
-          <p className="inline-block text-[10px] font-semibold tracking-[0.25em] text-[var(--clr-accent)] uppercase border border-[var(--clr-accent)]/40 px-4 py-1.5 rounded-full mb-6">
-            {t("contact_hero_badge")}
-          </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none mb-5">
-            {t("contact_hero_title1")}<br />
-            <span className="text-[#D4AF37]">{t("contact_hero_title2")}</span>
-          </h1>
-          <p className="text-white/55 text-base max-w-md mx-auto leading-relaxed">
-            {t("contact_hero_desc")}
-          </p>
+          <Anim variant="up" delay={0}>
+            <p className="inline-block text-[10px] font-semibold tracking-[0.25em] text-[var(--clr-accent)] uppercase border border-[var(--clr-accent)]/40 px-4 py-1.5 rounded-full mb-6">
+              {t("contact_hero_badge")}
+            </p>
+          </Anim>
+          <Anim variant="up" delay={100}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none mb-5">
+              {t("contact_hero_title1")}<br />
+              <span className="text-[#D4AF37]">{t("contact_hero_title2")}</span>
+            </h1>
+          </Anim>
+          <Anim variant="up" delay={200}>
+            <p className="text-white/55 text-base max-w-md mx-auto leading-relaxed">
+              {t("contact_hero_desc")}
+            </p>
+          </Anim>
         </div>
       </section>
 
       {/* ── Contact cards ── */}
       <section className="max-w-[1275px] mx-auto px-6 -mt-8 relative z-10 mb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {CONTACT_ITEMS.map((item) => (
-            <div
-              key={item.labelKey}
-              className="bg-[var(--clr-bg)] border border-[var(--clr-border)] rounded-2xl p-5 shadow-sm flex flex-col gap-3"
-            >
-              <div className="w-10 h-10 rounded-xl bg-[var(--clr-surface)] flex items-center justify-center text-[var(--clr-primary)]">
-                {item.icon}
+          {CONTACT_ITEMS.map((item, i) => (
+            <Anim key={item.labelKey} variant="scale" delay={i * 100}>
+              <div className="bg-[var(--clr-bg)] border border-[var(--clr-border)] rounded-2xl p-5 shadow-sm flex flex-col gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[var(--clr-surface)] flex items-center justify-center text-[var(--clr-primary)]">
+                  {item.icon}
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-1">
+                    {t(item.labelKey)}
+                  </p>
+                  <p className="font-bold text-[var(--clr-text)] text-sm leading-snug">{item.value}</p>
+                  <p className="text-[var(--clr-text-secondary)] text-xs mt-0.5">
+                    {item.subKey ? t(item.subKey) : item.subStatic}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-[10px] font-semibold tracking-widest text-[var(--clr-accent)] uppercase mb-1">
-                  {t(item.labelKey)}
-                </p>
-                <p className="font-bold text-[var(--clr-text)] text-sm leading-snug">{item.value}</p>
-                <p className="text-[var(--clr-text-secondary)] text-xs mt-0.5">
-                  {item.subKey ? t(item.subKey) : item.subStatic}
-                </p>
-              </div>
-            </div>
+            </Anim>
           ))}
         </div>
       </section>
@@ -169,11 +175,12 @@ export default function ContactPage() {
             </div>
           ) : (
             <>
-              <div className="text-center mb-10">
+              <Anim variant="up" delay={0} className="text-center mb-10">
                 <h2 className="text-3xl font-black text-[var(--clr-text)] mb-2">{t("contact_form_title")}</h2>
                 <p className="text-[var(--clr-text-secondary)] text-sm">{t("contact_form_desc")}</p>
-              </div>
+              </Anim>
 
+              <Anim variant="up" delay={100}>
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
@@ -256,6 +263,7 @@ export default function ContactPage() {
                   <p className="text-red-500 text-sm text-center">{error}</p>
                 )}
               </form>
+              </Anim>
             </>
           )}
         </div>
