@@ -23,7 +23,7 @@ const SOCIALS = [
 
 const EMAIL = "info@cypruskeys.com";
 const PHONE = "+90 500 000 00 00";
-const GOLD = "#C9A24E";
+const GOLD = "#DDB13C";
 
 const Arrow = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
@@ -95,7 +95,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={rootRef} className="font-satoshi w-full bg-[#0D0D0F] overflow-hidden">
+    <footer ref={rootRef} className="font-satoshi w-full bg-[#0D0D0F] overflow-hidden mt-20 md:mt-28">
 
       {/* ── Top row: Office (left) · Email (center) · Contacts (right) ── */}
       <div className="w-full px-8 md:px-16 py-9 md:py-11">
