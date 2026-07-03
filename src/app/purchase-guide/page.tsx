@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Anim from "@/components/Anim";
@@ -155,33 +155,6 @@ export default function PurchaseGuidePage() {
           </div>
           </Anim>
         </div>
-
-        {/* CTA */}
-        <Anim variant="scale">
-        <div className="bg-[#0B1F3A] rounded-3xl px-8 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <h3 className="text-xl md:text-2xl font-black text-white mb-2">{t("pg_cta_title")}</h3>
-            <p className="text-white/60 text-sm">{t("pg_cta_desc")}</p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-            <Link
-              href="/properties"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm px-6 py-3 rounded-full transition-colors"
-            >
-              {t("pg_cta_browse")}
-            </Link>
-            <Link
-              href="/contacts"
-              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 text-[#0B1F3A] font-semibold text-sm px-6 py-3 rounded-full transition-colors"
-            >
-              {t("pg_cta_contact")}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-        </Anim>
 
       </div>
     </main>

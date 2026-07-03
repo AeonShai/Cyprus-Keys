@@ -44,9 +44,6 @@ export default async function Home() {
         <ServicesSection />
       </div>
 
-      {/* CTA above footer */}
-      <LeadCTA />
-
     </main>
   );
 }
