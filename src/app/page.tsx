@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import ExploreSection from "@/components/ExploreSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import ServicesSection from "@/components/ServicesSection";
-import LeadCTA from "@/components/LeadCTA";
+import FAQ from "@/components/FAQ";
 import db from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -43,6 +43,9 @@ export default async function Home() {
       <div className="mt-8">
         <ServicesSection />
       </div>
+
+      {/* FAQ — directly above footer */}
+      <FAQ />
 
     </main>
   );

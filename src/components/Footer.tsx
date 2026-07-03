@@ -171,17 +171,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company + Legal */}
+          {/* Legal */}
           <div>
-            <p className="text-[13px] font-medium tracking-[0.22em] text-white/40 uppercase mb-4">/{t("footer_company")}</p>
-            <ul className="space-y-3.5 mb-8">
-              <li className="ck-stagger">
-                <a href="/about" className="text-white/80 text-lg font-medium hover:text-white transition-colors">{t("footer_about")}</a>
-              </li>
-              <li className="ck-stagger">
-                <a href="/contacts" className="text-white/80 text-lg font-medium hover:text-white transition-colors">{t("nav_contacts")}</a>
-              </li>
-            </ul>
             <p className="text-[13px] font-medium tracking-[0.22em] text-white/40 uppercase mb-4">/{t("footer_legal")}</p>
             <ul className="space-y-3.5">
               <li className="ck-stagger">

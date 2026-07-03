@@ -137,6 +137,22 @@ const translations = {
     footer_legal: "Legal",
     footer_about: "About Us",
 
+    // FAQ
+    faq_badge: "FAQ",
+    faq_title: "Frequently Asked Questions",
+    faq_q1: "Can foreigners buy property in Northern Cyprus?",
+    faq_a1: "Yes. Foreign nationals can legally purchase property in Northern Cyprus. The process is straightforward, and our team guides you through every step, including the required purchase permit.",
+    faq_q2: "What are the steps to buy a property?",
+    faq_a2: "After choosing a property, you sign a sales contract, pay a reservation deposit, register the contract at the Land Registry, and apply for the purchase permit. We handle the paperwork with you.",
+    faq_q3: "What additional costs should I budget for?",
+    faq_a3: "Typical costs include transfer tax, VAT, stamp duty, and legal fees. We provide a clear breakdown before you commit, so there are no surprises.",
+    faq_q4: "Can I buy off-plan or under-construction property?",
+    faq_a4: "Yes. We offer a wide range of off-plan projects with flexible payment plans directly from trusted developers.",
+    faq_q5: "Do you assist with rentals and property management?",
+    faq_a5: "Absolutely. Beyond sales, we help with long- and short-term rentals and can arrange ongoing property management.",
+    faq_q6: "How can I schedule a viewing?",
+    faq_a6: "Simply reach out through the Contacts page or via WhatsApp. We arrange in-person or virtual viewings at your convenience.",
+
     // LeadCTA
     lead_cta_badge: "Free Consultation",
     lead_cta_description: "Leave your details and one of our advisors will contact you within 24 hours. No commitment, no pressure — just expert advice tailored to your goals.",
@@ -288,6 +304,22 @@ const translations = {
     footer_legal: "Yasal",
     footer_about: "Hakkımızda",
 
+    // FAQ
+    faq_badge: "S.S.S.",
+    faq_title: "Sıkça Sorulan Sorular",
+    faq_q1: "Yabancılar Kuzey Kıbrıs’ta mülk satın alabilir mi?",
+    faq_a1: "Evet. Yabancı uyruklu kişiler Kuzey Kıbrıs’ta yasal olarak mülk satın alabilir. Süreç basittir ve ekibimiz, gerekli satın alma izni dahil her adımda size rehberlik eder.",
+    faq_q2: "Mülk satın alma adımları nelerdir?",
+    faq_a2: "Mülkü seçtikten sonra satış sözleşmesi imzalanır, rezervasyon depozitosu ödenir, sözleşme Tapu Dairesi’ne kaydedilir ve satın alma izni başvurusu yapılır. Tüm evrak işlemlerini sizinle birlikte yürütüyoruz.",
+    faq_q3: "Ek olarak hangi masrafları hesaba katmalıyım?",
+    faq_a3: "Tipik masraflar arasında devir vergisi, KDV, damga vergisi ve avukatlık ücretleri bulunur. Karar vermeden önce net bir döküm sunarız, böylece sürpriz olmaz.",
+    faq_q4: "Proje aşamasındaki veya inşaat halindeki mülk alabilir miyim?",
+    faq_a4: "Evet. Güvenilir geliştiricilerden doğrudan, esnek ödeme planlarına sahip geniş bir proje yelpazesi sunuyoruz.",
+    faq_q5: "Kiralama ve mülk yönetimi konusunda yardımcı oluyor musunuz?",
+    faq_a5: "Kesinlikle. Satışın yanı sıra uzun ve kısa dönem kiralamalarında yardımcı oluyor ve sürekli mülk yönetimi düzenleyebiliyoruz.",
+    faq_q6: "Nasıl mülk gezisi ayarlayabilirim?",
+    faq_a6: "İletişim sayfası aracılığıyla veya WhatsApp üzerinden bize ulaşmanız yeterli. Size uygun bir zamanda yüz yüze veya sanal geziler düzenliyoruz.",
+
     // LeadCTA
     lead_cta_badge: "Ücretsiz Danışmanlık",
     lead_cta_description: "Bilgilerinizi bırakın, danışmanlarımızdan biri 24 saat içinde sizi arasın. Taahhüt yok, baskı yok — sadece hedeflerinize özel uzman tavsiyesi.",
@@ -438,6 +470,22 @@ const translations = {
     footer_phone_label: "Телефон",
     footer_legal: "Правовая информация",
     footer_about: "О нас",
+
+    // FAQ
+    faq_badge: "FAQ",
+    faq_title: "Часто задаваемые вопросы",
+    faq_q1: "Могут ли иностранцы покупать недвижимость на Северном Кипре?",
+    faq_a1: "Да. Иностранные граждане могут на законных основаниях приобретать недвижимость на Северном Кипре. Процесс простой, и наша команда сопровождает вас на каждом этапе, включая получение необходимого разрешения на покупку.",
+    faq_q2: "Каковы этапы покупки недвижимости?",
+    faq_a2: "После выбора объекта вы подписываете договор купли-продажи, вносите резервационный депозит, регистрируете договор в Земельном кадастре и подаёте заявку на разрешение на покупку. Мы берём на себя все формальности.",
+    faq_q3: "Какие дополнительные расходы стоит учесть?",
+    faq_a3: "Обычные расходы включают налог на передачу, НДС, гербовый сбор и юридические услуги. Мы предоставляем чёткую расшифровку до сделки, чтобы не было сюрпризов.",
+    faq_q4: "Могу ли я купить недвижимость на этапе строительства?",
+    faq_a4: "Да. Мы предлагаем широкий выбор объектов на этапе строительства с гибкими планами оплаты напрямую от надёжных застройщиков.",
+    faq_q5: "Помогаете ли вы с арендой и управлением недвижимостью?",
+    faq_a5: "Безусловно. Помимо продаж, мы помогаем с долгосрочной и краткосрочной арендой и можем организовать постоянное управление недвижимостью.",
+    faq_q6: "Как записаться на просмотр?",
+    faq_a6: "Просто свяжитесь с нами через страницу Контакты или через WhatsApp. Мы организуем личные или виртуальные просмотры в удобное для вас время.",
 
     // LeadCTA
     lead_cta_badge: "Бесплатная консультация",
